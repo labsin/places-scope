@@ -1,0 +1,15 @@
+{
+    "architecture": "@CLICK_ARCH@",
+    "description": "Make use of Google places",
+    "framework": "ubuntu-sdk-14.04",
+    "hooks": {
+        "places": {
+            "apparmor": "places.apparmor",
+            "scope": "places"
+        }
+    },
+    "maintainer": "Sam Segers <sam.sgrs@gmail.com>",
+    "name": "com.ubuntu.developer.labsin.places",
+    "title": "places",
+    "version": "0.1"
+}
