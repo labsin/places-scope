@@ -17,12 +17,12 @@ Client::Client(Config::Ptr config) :
     config_(config), cancelled_(false) {
 }
 
-Client::PlaceRes Client::places(const string &query)
+Client::PlaceRes Client::places(const string &query, string language)
 {
-    return places(query,unity::scopes::Location(0.0,0.0));
+    return places(query,unity::scopes::Location(0.0,0.0), language);
 }
 
-Client::PlaceRes Client::places(const string &query, unity::scopes::Location location)
+Client::PlaceRes Client::places(const string &query, unity::scopes::Location location, string language)
 {
     json::Value root;
     PlaceRes result;
@@ -35,13 +35,13 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
             get(
             { "place", "textsearch", "json" },
             { { "query", query }, { "key", config_->id }, { "radius" , "5000" },
-              { "location", to_string(location.latitude()) + "," + to_string(location.longitude()) } },
+              { "location", to_string(location.latitude()) + "," + to_string(location.longitude()) }, {"language", language} },
                         root);
         }
         else {
             get(
             { "place", "textsearch", "json" },
-            { { "query", query }, { "key", config_->id } },
+            { { "query", query }, { "key", config_->id }, {"language", language} },
                         root);
         }
     }
@@ -50,7 +50,7 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
             get(
             { "place", "nearbysearch", "json" },
             { { "location", to_string(location.latitude()) + "," + to_string(location.longitude()) },
-              { "key", config_->id }, { "rankby" , "distance" } },
+              { "key", config_->id }, { "rankby" , "distance" }, {"language", language} },
                         root);
         }
         else {
@@ -86,6 +86,14 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
                         });
         }
 
+        bool openNow=false;
+        bool hasOpeningHours=false;
+        json::Value oh = item["opening_hours"];
+        if(!oh.empty()) {
+            hasOpeningHours = true;
+            openNow = oh["open_now"].asBool();
+        }
+
         // Add a result to the list
         result.places.emplace_back(
                     Place{ item["place_id"].asString(),
@@ -99,9 +107,7 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
                                item["geometry"]["location"]["lat"].asDouble(),
                                item["geometry"]["location"]["lng"].asDouble()
                            },
-                           OpeningHours {
-                               item["opening_hours"]["open_now"].asBool()
-                           },
+                           !hasOpeningHours ? OpeningHours() : OpeningHours(openNow),
                            photoList
                     });
     }
@@ -110,13 +116,13 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
 }
 
 
-Client::PlaceDetails Client::placeDetails(const string &placeId)
+Client::PlaceDetails Client::placeDetails(const string &placeId, std::string language)
 {
     json::Value root;
 
     get(
     { "place", "details", "json" },
-    { { "placeid", placeId }, { "key", config_->id } },
+    { { "placeid", placeId }, { "key", config_->id }, {"language", language} },
                 root);
 
     json::Value item = root["result"];
@@ -158,6 +164,80 @@ Client::PlaceDetails Client::placeDetails(const string &placeId)
                                  review["text"].asString()
                              });
     }
+    std::vector<OpeningsDay> period(0);
+    std::vector<string> periodString(0);
+    bool openNow = false;
+    bool hasWeekdayText = false;
+    bool hasOpeningHours = false;
+    json::Value oh = item["opening_hours"];
+    if(!oh.empty()) {
+        hasOpeningHours = true;
+        openNow = oh["open_now"].asBool();
+        json::Value periodVal = oh["periods"];
+        if(!periodVal.empty()) {
+            period.resize(7, OpeningsDay());
+            json::Value day;
+            for(int i=0, offset=0; i+offset<7; i++) {
+                day = periodVal[i];
+                if(day.empty()) {
+                    continue;
+                }
+                bool allDay;
+                bool closed;
+                json::Value open = day["open"];
+                string openString;
+                if(open.empty()) {
+                    closed = true;
+                    openString = "0000";
+                }
+                else {
+                    if(open["day"].asInt() != i) {
+                        offset = open["day"].asInt() - i;
+                    }
+                    openString = open["time"].asString();
+                }
+                uint openHour = atoi(openString.substr(0,2).c_str());
+                uint openMinutes = atoi(openString.substr(2,2).c_str());
+                json::Value close = day["close"];
+                string closeString;
+                if(close.empty()) {
+                    if(!closed){
+                        allDay = true;
+                    }
+                    closeString = "0000";
+                }
+                else {
+                    closeString = close["time"].asString();
+                }
+                uint closeHour = atoi(openString.substr(0,2).c_str());
+                uint closeMinutes = atoi(openString.substr(2,2).c_str());
+                period[i+offset] = OpeningsDay {
+                        allDay,
+                        closed,
+                        openHour,
+                        openMinutes,
+                        closeHour,
+                        closeMinutes,
+                        (Day)(i+offset)
+                };
+            }
+        }
+        json::Value wd = oh["weekday_text"];
+        if(!wd.empty()) {
+            periodString.resize(7);
+            hasWeekdayText = true;
+            json::Value day;
+            for(int i=0; i<7; i++) {
+                day = wd[i];
+                if(day.empty()) {
+                    periodString[i] = "";
+                }
+                else{
+                    periodString[i] = day.asString();
+                }
+            }
+        }
+    }
 
     // Add a result to the list
     return PlaceDetails { item["place_id"].asString(),
@@ -168,13 +248,16 @@ Client::PlaceDetails Client::placeDetails(const string &placeId)
                 item["icon"].asString(),
                 item["reference"].asString(),
                 Location {
-            item["geometry"]["location"]["lat"].asDouble(),
-                    item["geometry"]["location"]["lng"].asDouble()
-        },
-        OpeningHours {
-            item["opening_hours"]["open_now"].asBool()
-        },
-        photoList,
+                        item["geometry"]["location"]["lat"].asDouble(),
+                        item["geometry"]["location"]["lng"].asDouble()
+                },
+                !hasOpeningHours ? OpeningHours() : OpeningHours {
+                    openNow,
+                    hasWeekdayText,
+                    period,
+                    periodString
+                },
+                photoList,
                 item["formatted_phone_number"].asString(),
                 item["website"].asString(),
                 reviewList

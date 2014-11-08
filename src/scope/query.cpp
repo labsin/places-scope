@@ -35,7 +35,7 @@ const static string LOCATION_TEMPLATE =
         "category-layout": "grid",
         "card-size": "medium",
         "overlay": "true",
-        "card-background": "color:///red"
+        "card-background": "gradient:///#666666/#3369E8"
         },
         "components": {
         "title": "name",
@@ -45,7 +45,7 @@ const static string LOCATION_TEMPLATE =
         "mascot" : {
         "field": "icon"
         },
-        "subtitle": "address"
+        "subtitle": "rating"
         }
         }
         )";
@@ -70,15 +70,15 @@ void Query::run(sc::SearchReplyProxy const& reply) {
         Client::PlaceRes placeList;
         if (query_string.empty()) {
             if(search_metadata().has_location())
-                placeList = client_.places("",search_metadata().location());
+                placeList = client_.places("",search_metadata().location(), sc::SearchQueryBase::search_metadata().locale());
             else
                 return;
         } else {
             // otherwise, get the current weather for the search string
             if(search_metadata().has_location())
-                placeList = client_.places(query_string,search_metadata().location());
+                placeList = client_.places(query_string,search_metadata().location(), sc::SearchQueryBase::search_metadata().locale());
             else
-                placeList = client_.places(query_string);
+                placeList = client_.places(query_string, sc::SearchQueryBase::search_metadata().locale());
         }
 
         // Register a category for tracks

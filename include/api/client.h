@@ -34,11 +34,64 @@ public:
         double lang;
     };
 
+    enum Day {
+        SUN = 0,
+        MON,
+        TUE,
+        WED,
+        THU,
+        FRI,
+        SAT,
+        UNKNOWN = -1
+    };
+
     /**
      * Information about a location
      */
+    struct OpeningsDay {
+        OpeningsDay() {}
+        OpeningsDay(bool a, bool b, uint c, uint d, uint e, uint f, Day g) :
+        allDay(a), closed(b), openHour(c), openMinutes(d), closeHour(e), closeMinutes(f), day(g){}
+        bool allDay = false;
+        bool closed = true;
+        uint openHour = 0;
+        uint openMinutes = 0;
+        uint closeHour = 0;
+        uint closeMinutes = 0;
+        Day day = UNKNOWN;
+    };
+
+    const static std::string dayOfWeek(Day day) {
+        switch(day) {
+        case SUN:
+            return "Sunday";
+        case MON:
+            return "Monday";
+        case TUE:
+            return "Tuesday";
+        case WED:
+            return "Wednesday";
+        case THU:
+            return "Thursday";
+        case FRI:
+            return "Friday";
+        case SAT:
+            return "Saturday";
+        default:
+            return "";
+        }
+    }
+
     struct OpeningHours {
-        bool openNow;
+        OpeningHours():valid(false) {}
+        OpeningHours(bool a, bool b, std::vector<OpeningsDay> c, std::vector<std::string> d) :
+        openNow(a), hasWeekdayText(b), periods(c), periodsStrings(d) {}
+        OpeningHours(bool a) : openNow(a) {}
+        bool openNow = false;
+        bool hasWeekdayText = false;
+        std::vector<OpeningsDay> periods = std::vector<OpeningsDay>();
+        std::vector<std::string> periodsStrings = std::vector<std::string>();
+        bool valid = true;
     };
 
     /**
@@ -115,8 +168,8 @@ public:
     /**
      * Get the track list for a query
      */
-    virtual PlaceRes places(const std::string &query);
-    virtual PlaceRes places(const std::string &query, unity::scopes::Location location);
+    virtual PlaceRes places(const std::string &query, std::string language = "en");
+    virtual PlaceRes places(const std::string &query, unity::scopes::Location location, std::string language = "en");
 
     /**
      * Cancel any pending queries (this method can be called from a different thread)
@@ -125,7 +178,7 @@ public:
 
     virtual Config::Ptr config();
 
-    Client::PlaceDetails placeDetails(const std::string &placeId);
+    Client::PlaceDetails placeDetails(const std::string &placeId, std::string language = "en");
 
 protected:
     void get(const core::net::Uri::Path &path,
