@@ -2,6 +2,7 @@
 #include <scope/preview.h>
 #include <scope/query.h>
 #include <scope/scope.h>
+#include <scope/activation.h>
 
 #include <iostream>
 #include <sstream>
@@ -34,6 +35,16 @@ sc::SearchQueryBase::UPtr Scope::search(const sc::CannedQuery &query,
                                         const sc::SearchMetadata &metadata) {
     // Boilerplate construction of Query
     return sc::SearchQueryBase::UPtr(new Query(query, metadata, config_));
+}
+
+unity::scopes::ActivationQueryBase::UPtr Scope::perform_action(const unity::scopes::Result &result, const unity::scopes::ActionMetadata &metadata, const string &widget_id, const string &action_id)
+{
+    return sc::ActivationQueryBase::UPtr(new Activation(result, metadata, widget_id, action_id));
+}
+
+unity::scopes::ActivationQueryBase::UPtr Scope::activate(const unity::scopes::Result &result, const unity::scopes::ActionMetadata &metadata)
+{
+    return sc::ActivationQueryBase::UPtr(new Activation(result, metadata));
 }
 
 sc::PreviewQueryBase::UPtr Scope::preview(sc::Result const& result,
