@@ -1,3 +1,5 @@
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O0 -g")
+
 # The sources to build the scope
 set(SCOPE_SOURCES
   api/client.cpp
