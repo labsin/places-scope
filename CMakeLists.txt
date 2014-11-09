@@ -52,12 +52,12 @@ set(UBUNTU_PROJECT_TYPE "Scope" CACHE INTERNAL "Tells QtCreator this is a Scope 
 
 # Important project paths
 set(CMAKE_INSTALL_PREFIX /)
-set(SCOPE_INSTALL_DIR "/test-scope")
-set(GETTEXT_PACKAGE "scope-test")
+set(SCOPE_INSTALL_DIR "/places")
+set(GETTEXT_PACKAGE "places")
 
 # If we need to refer to the scope's name or package in code, these definitions will help
-add_definitions(-DPACKAGE_NAME="com.ubuntu.developer.labsin.scope-test")
-add_definitions(-DSCOPE_NAME="com.ubuntu.developer.labsin.scope-test_test-scope")
+add_definitions(-DPACKAGE_NAME="com.ubuntu.developer.labsin.places")
+add_definitions(-DSCOPE_NAME="com.ubuntu.developer.labsin.places_places")
 add_definitions(-DGETTEXT_PACKAGE="${GETTEXT_PACKAGE}")
 
 #This command figures out the target architecture and puts it into the manifest file
