@@ -5,6 +5,7 @@
 #include <core/net/http/content_type.h>
 #include <core/net/http/response.h>
 #include <json/json.h>
+#include <string>
 
 namespace http = core::net::http;
 namespace json = Json;
@@ -19,44 +20,99 @@ Client::Client(Config::Ptr config) :
 
 Client::PlaceRes Client::places(const string &query, string language)
 {
-    return places(query,unity::scopes::Location(0.0,0.0), language);
+    json::Value root;
+    if(query.empty()) {
+        return Client::PlaceRes();
+    }
+
+    get(
+    { "place", "textsearch", "json" },
+    { { "query", query }, { "key", config_->id }, {"language", language} },
+                root);
+    return processPlaces(root);
+}
+
+Client::PlaceRes Client::nearby(const string &query, unity::scopes::Location location, string language)
+{
+    json::Value root;
+    if(query.empty()) {
+        return Client::PlaceRes();
+    }
+
+    if(location.latitude() == 0.0 || location.longitude() == 0.0) {
+        return Client::PlaceRes();
+    }
+    std::string latitude;
+    std::string longitude;
+    std::stringstream oss;
+    oss.setf(std::ostringstream::showpoint);
+    oss << location.latitude();
+    latitude = oss.str();
+    oss.str("");
+    oss << location.longitude();
+    longitude = oss.str();
+    get(
+    { "place", "nearbysearch", "json" },
+    { { "keyword", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+      { "location", latitude + "," + longitude }, {"language", language} },
+                root);
+    return processPlaces(root);
+}
+
+Client::PlaceRes Client::nearby(unity::scopes::Location location, string language)
+{
+    json::Value root;
+
+    if(location.latitude() == 0.0 || location.longitude() == 0.0) {
+        return Client::PlaceRes();
+    }
+    std::string latitude;
+    std::string longitude;
+    std::stringstream oss;
+    oss.setf(std::ostringstream::showpoint);
+    oss << location.latitude();
+    latitude = oss.str();
+    oss.str("");
+    oss << location.longitude();
+    longitude = oss.str();
+    get(
+    { "place", "nearbysearch", "json" },
+    { { "location", latitude + "," + longitude },
+      { "key", config_->id }, { "radius" , std::to_string(s_radius) }, {"language", language} },
+                root);
+    return processPlaces(root);
 }
 
 Client::PlaceRes Client::places(const string &query, unity::scopes::Location location, string language)
 {
     json::Value root;
-    PlaceRes result;
+    if(query.empty()) {
+        return Client::PlaceRes();
+    }
 
-    // Build a URI and get the contents
-    // The fist parameter forms the path part of the URI.
-    // The second parameter forms the CGI parameters.
-    if(!query.empty()) {
-        if(location.latitude() != 0.0 && location.longitude() != 0.0) {
-            get(
-            { "place", "textsearch", "json" },
-            { { "query", query }, { "key", config_->id }, { "radius" , "5000" },
-              { "location", to_string(location.latitude()) + "," + to_string(location.longitude()) }, {"language", language} },
-                        root);
-        }
-        else {
-            get(
-            { "place", "textsearch", "json" },
-            { { "query", query }, { "key", config_->id }, {"language", language} },
-                        root);
-        }
+    if(location.latitude() == 0.0 || location.longitude() == 0.0) {
+        return places(query,language);
     }
-    else {
-        if(location.latitude() != 0.0 && location.longitude() != 0.0) {
-            get(
-            { "place", "nearbysearch", "json" },
-            { { "location", to_string(location.latitude()) + "," + to_string(location.longitude()) },
-              { "key", config_->id }, { "rankby" , "distance" }, {"language", language} },
-                        root);
-        }
-        else {
-            return result;
-        }
-    }
+    std::string latitude;
+    std::string longitude;
+    std::stringstream oss;
+    oss.setf(std::ostringstream::showpoint);
+    oss << location.latitude();
+    latitude = oss.str();
+    oss.str("");
+    oss << location.longitude();
+    longitude = oss.str();
+    get(
+    { "place", "textsearch", "json" },
+    { { "query", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+      { "location", latitude + "," + longitude }, {"language", language} },
+                root);
+    return processPlaces(root);
+}
+
+
+Client::PlaceRes Client::processPlaces(json::Value& root) {
+    PlaceRes result;
 
     json::Value list = root["results"];
     for (json::ArrayIndex index = 0; index < list.size(); ++index) {
@@ -113,8 +169,8 @@ Client::PlaceRes Client::places(const string &query, unity::scopes::Location loc
     }
 
     return result;
-}
 
+}
 
 Client::PlaceDetails Client::placeDetails(const string &placeId, std::string language)
 {

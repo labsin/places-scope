@@ -28,6 +28,8 @@ public:
 
 private:
     api::Client client_;
+    void initScope();
+    int s_radius;
 };
 
 }

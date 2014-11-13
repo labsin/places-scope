@@ -180,6 +180,12 @@ public:
 
     Client::PlaceDetails placeDetails(const std::string &placeId, std::string language = "en");
 
+    void setRadius(int radius) {
+        s_radius = radius;
+    }
+
+    Client::PlaceRes nearby(const std::string &query, unity::scopes::Location location, std::string language);
+    Client::PlaceRes nearby(unity::scopes::Location location, std::string language);
 protected:
     void get(const core::net::Uri::Path &path,
              const core::net::Uri::QueryParameters &parameters,
@@ -200,6 +206,9 @@ protected:
      * Thread-safe cancelled flag
      */
     std::atomic<bool> cancelled_;
+private:
+    PlaceRes processPlaces(Json::Value &root);
+    int s_radius;
 };
 
 }
