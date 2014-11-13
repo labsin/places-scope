@@ -5,6 +5,11 @@ configure_file(
     "${CMAKE_BINARY_DIR}/src/com.ubuntu.developer.labsin.places_places.ini"
     @ONLY
 )
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/com.ubuntu.developer.labsin.places_places-settings.ini"
+    "${CMAKE_BINARY_DIR}/src/com.ubuntu.developer.labsin.places_places-settings.ini"
+    @ONLY
+)
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/logo.png"
@@ -16,6 +21,7 @@ configure_file(
 # Install the scope ini file
 install(
   FILES "com.ubuntu.developer.labsin.places_places.ini"
+        "com.ubuntu.developer.labsin.places_places-settings.ini"
   DESTINATION ${SCOPE_INSTALL_DIR}
 )
 
