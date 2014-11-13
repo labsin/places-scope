@@ -44,12 +44,12 @@ public:
             unity::scopes::CannedQuery const& q,
             unity::scopes::SearchMetadata const&) override;
 
-    unity::scopes::ActivationQueryBase::UPtr perform_action(unity::scopes::Result const& result,
-                                                     unity::scopes::ActionMetadata const& metadata,
-                                                     std::string const& widget_id,
-                                                     std::string const& action_id);
+//    unity::scopes::ActivationQueryBase::UPtr perform_action(unity::scopes::Result const& result,
+//                                                     unity::scopes::ActionMetadata const& metadata,
+//                                                     std::string const& widget_id,
+//                                                     std::string const& action_id);
 
-    unity::scopes::ActivationQueryBase::UPtr activate(unity::scopes::Result const& result, unity::scopes::ActionMetadata const& metadata);
+//    unity::scopes::ActivationQueryBase::UPtr activate(unity::scopes::Result const& result, unity::scopes::ActionMetadata const& metadata);
 
 protected:
     api::Config::Ptr config_;
