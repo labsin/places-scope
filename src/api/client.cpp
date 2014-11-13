@@ -18,7 +18,21 @@ Client::Client(Config::Ptr config) :
     config_(config), cancelled_(false) {
 }
 
-Client::PlaceRes Client::places(const string &query, string language)
+Client::PlaceRes Client::placesFromToken(const string &pageToken, const string language)
+{
+    json::Value root;
+    if(pageToken.empty()) {
+        return Client::PlaceRes();
+    }
+
+    get(
+    { "place", "textsearch", "json" },
+    { { "pagetoken", pageToken }, { "key", config_->id }, {"language", language} },
+                root);
+    return processPlaces(root);
+}
+
+Client::PlaceRes Client::places(const string &query, const string language)
 {
     json::Value root;
     if(query.empty()) {
@@ -32,7 +46,7 @@ Client::PlaceRes Client::places(const string &query, string language)
     return processPlaces(root);
 }
 
-Client::PlaceRes Client::nearby(const string &query, unity::scopes::Location location, string language)
+Client::PlaceRes Client::nearby(const string &query, const unity::scopes::Location location, const string language, const string type)
 {
     json::Value root;
     if(query.empty()) {
@@ -51,15 +65,24 @@ Client::PlaceRes Client::nearby(const string &query, unity::scopes::Location loc
     oss.str("");
     oss << location.longitude();
     longitude = oss.str();
-    get(
-    { "place", "nearbysearch", "json" },
-    { { "keyword", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
-      { "location", latitude + "," + longitude }, {"language", language} },
-                root);
+    if(type.empty()){
+        get(
+        { "place", "nearbysearch", "json" },
+        { { "keyword", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+          { "location", latitude + "," + longitude }, {"language", language} },
+                    root);
+    }
+    else {
+        get(
+        { "place", "nearbysearch", "json" },
+        { { "keyword", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+          { "location", latitude + "," + longitude }, {"language", language}, {"type", type} },
+                    root);
+    }
     return processPlaces(root);
 }
 
-Client::PlaceRes Client::nearby(unity::scopes::Location location, string language)
+Client::PlaceRes Client::nearby(const unity::scopes::Location location, const string language, const string type)
 {
     json::Value root;
 
@@ -75,15 +98,25 @@ Client::PlaceRes Client::nearby(unity::scopes::Location location, string languag
     oss.str("");
     oss << location.longitude();
     longitude = oss.str();
-    get(
-    { "place", "nearbysearch", "json" },
-    { { "location", latitude + "," + longitude },
-      { "key", config_->id }, { "radius" , std::to_string(s_radius) }, {"language", language} },
-                root);
+    if(type.empty()){
+        get(
+        { "place", "nearbysearch", "json" },
+        { { "location", latitude + "," + longitude },
+          { "key", config_->id }, { "radius" , std::to_string(s_radius) }, {"language", language} },
+                    root);
+    }
+    else {
+        get(
+        { "place", "nearbysearch", "json" },
+        { { "location", latitude + "," + longitude },
+          { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+          {"language", language}, {"types", type} },
+                    root);
+    }
     return processPlaces(root);
 }
 
-Client::PlaceRes Client::places(const string &query, unity::scopes::Location location, string language)
+Client::PlaceRes Client::places(const string &query, const unity::scopes::Location location, const string language)
 {
     json::Value root;
     if(query.empty()) {
@@ -167,12 +200,16 @@ Client::PlaceRes Client::processPlaces(json::Value& root) {
                            photoList
                     });
     }
+    Json::Value nextPage = root["next_page_token"];
+    if(nextPage.isString()) {
+        result.nextPageToken = nextPage.asString();
+    }
 
     return result;
 
 }
 
-Client::PlaceDetails Client::placeDetails(const string &placeId, std::string language)
+Client::PlaceDetails Client::placeDetails(const string &placeId, const std::string language)
 {
     json::Value root;
 

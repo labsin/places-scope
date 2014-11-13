@@ -159,6 +159,7 @@ public:
     */
     struct PlaceRes {
         PlaceList places;
+        std::string nextPageToken;
     };
 
     Client(Config::Ptr config);
@@ -168,8 +169,9 @@ public:
     /**
      * Get the track list for a query
      */
-    virtual PlaceRes places(const std::string &query, std::string language = "en");
-    virtual PlaceRes places(const std::string &query, unity::scopes::Location location, std::string language = "en");
+    virtual PlaceRes placesFromToken(const std::string &pageToken, const std::string language = "en");
+    virtual PlaceRes places(const std::string &query, const std::string language = "en");
+    virtual PlaceRes places(const std::string &query, const unity::scopes::Location location, const std::string language = "en");
 
     /**
      * Cancel any pending queries (this method can be called from a different thread)
@@ -178,14 +180,14 @@ public:
 
     virtual Config::Ptr config();
 
-    Client::PlaceDetails placeDetails(const std::string &placeId, std::string language = "en");
+    Client::PlaceDetails placeDetails(const std::string &placeId, const std::string language = "en");
 
     void setRadius(int radius) {
         s_radius = radius;
     }
 
-    Client::PlaceRes nearby(const std::string &query, unity::scopes::Location location, std::string language);
-    Client::PlaceRes nearby(unity::scopes::Location location, std::string language);
+    Client::PlaceRes nearby(const std::string &query, const unity::scopes::Location location, const std::string language = "en", const std::string type = "");
+    Client::PlaceRes nearby(unity::scopes::Location location, const std::string language = "en", const std::string type = "");
 protected:
     void get(const core::net::Uri::Path &path,
              const core::net::Uri::QueryParameters &parameters,

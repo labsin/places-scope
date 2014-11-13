@@ -7,6 +7,7 @@
 #include <unity/scopes/SearchReply.h>
 #include <unity/scopes/SearchMetadata.h>
 #include <unity/scopes/Variant.h>
+#include <unity/scopes/Department.h>
 
 #include <scope/localization.h>
 #include <scope/query.h>
@@ -64,6 +65,21 @@ const static string NEARBY_TEMPLATE =
         }
         )";
 
+std::map<std::string, std::string> publicPlaces = {
+    {"All", "atm|city_hall|courthouse|embassy|establishment|fire_station|funeral_home|hospital|local_government_office|school|university"},
+    {"Atm", "atm"},
+    {"City Hall", "city_hall"},
+    {"Courthouse", "courthouse"},
+    {"Embassy", "embassy"},
+    {"Establishment", "establishment"},
+    {"Fire Station", "fire_station"},
+    {"Funeral Home", "funeral_home"},
+    {"Hospital", "hospital"},
+    {"Local Government Office", "local_government_office"},
+    {"School", "school"},
+    {"University", "university"}
+};
+
 Query::Query(const sc::CannedQuery &query, const sc::SearchMetadata &metadata,
              Config::Ptr config) :
     sc::SearchQueryBase(query, metadata), client_(config) {
@@ -91,10 +107,26 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
         if(search_metadata().has_location()) {
             Client::PlaceRes nearbyList;
-            if(!query_string.empty())
-                nearbyList = client_.nearby(query_string,search_metadata().location(), sc::SearchQueryBase::search_metadata().locale());
-            else
-                nearbyList = client_.nearby(search_metadata().location(), sc::SearchQueryBase::search_metadata().locale());
+            sc::Department::SPtr all_depts = sc::Department::create("", query, "Places");
+            sc::Department::SPtr ppDep = sc::Department::create(publicPlaces["All"], query, "Public Places");
+            bool first = true;
+            for(auto& kv : publicPlaces) {
+                if(first) {
+                    first = false;
+                    continue;
+                }
+                sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
+                ppDep->add_subdepartment(tmpDep);
+            }
+            all_depts->add_subdepartment(ppDep);
+            reply->register_departments(all_depts);
+
+            if(!query_string.empty()){
+                nearbyList = client_.nearby(query_string,search_metadata().location(), sc::SearchQueryBase::search_metadata().locale(), query.department_id());
+            }
+            else{
+                nearbyList = client_.nearby(search_metadata().location(), sc::SearchQueryBase::search_metadata().locale(), query.department_id());
+            }
 
             for (const Client::Place &place : nearbyList.places) {
                 sc::CategorisedResult res(nearyby_cat);
@@ -125,7 +157,21 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 if (!reply->push(res)) {
                     // If we fail to push, it means the query has been cancelled.
                     // So don't continue;
-                    break;
+                    return;
+                }
+            }
+            if(!nearbyList.nextPageToken.empty()) {
+                sc::CategorisedResult res(nearyby_cat);
+                res.set_art("./places.jpg");
+                res["name"] = "Next";
+                res.set_uri(nearbyList.nextPageToken);
+                res["pageToken"] = nearbyList.nextPageToken;
+
+                // Push the result
+                if (!reply->push(res)) {
+                    // If we fail to push, it means the query has been cancelled.
+                    // So don't continue;
+                    return;
                 }
             }
         }
@@ -169,7 +215,7 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 if (!reply->push(res)) {
                     // If we fail to push, it means the query has been cancelled.
                     // So don't continue;
-                    break;
+                    return;
                 }
             }
         }
