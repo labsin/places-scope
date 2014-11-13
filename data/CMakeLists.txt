@@ -30,6 +30,7 @@ install(
   FILES
     "icon.png"
     "logo.png"
+    "places.jpg"
     "screenshot.png"
   DESTINATION
     "${SCOPE_INSTALL_DIR}"

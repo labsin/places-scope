@@ -29,7 +29,7 @@ const static string LOCATION_TEMPLATE =
         "category-layout": "grid",
         "card-size": "medium",
         "overlay": true,
-        "card-background": "gradient:///#666666/#3369E8"
+        "card-background": "gradient:///#666666/#777777"
         },
         "components": {
         "title": "name",
@@ -49,10 +49,10 @@ const static string NEARBY_TEMPLATE =
 {
         "schema-version": 1,
         "template": {
-        "category-layout": "carousel",
-        "card-size": "large",
+        "category-layout": "horizontal-list",
+        "card-size": "medium",
         "overlay": true,
-        "card-background": "gradient:///#666666/#3369E8"
+        "card-background": "gradient:///#666666/#777777"
         },
         "components": {
         "title": "name",
