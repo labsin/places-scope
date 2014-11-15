@@ -18,6 +18,13 @@ configure_file(
     COPYONLY
 )
 
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/places.jpg"
+    "${CMAKE_BINARY_DIR}/src/places.jpg"
+    @ONLY
+    COPYONLY
+)
+
 # Install the scope ini file
 install(
   FILES "com.ubuntu.developer.labsin.places_places.ini"

@@ -7,9 +7,12 @@
 #include <unity/scopes/VariantBuilder.h>
 #include <unity/scopes/ActionMetadata.h>
 
+#include <core/net/uri.h>
+
 #include <boost/algorithm/string.hpp>
 
 #include <iostream>
+#include <sstream>
 
 namespace sc = unity::scopes;
 
@@ -114,6 +117,32 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                                       {"id", sc::Variant("website")},
                                       {"label", sc::Variant("Website")},
                                       {"uri", sc::Variant(pd.website)}
+                                  });
+            }
+            if(!pd.address.empty()) {
+                core::net::Uri::QueryParameters query;
+                core::net::Uri::Host host("http://maps.google.com");
+                core::net::Uri::Path path;
+                if(result.contains("location")) {
+                    sc::Location location( result.value("location").get_dict() );
+                    string latitude;
+                    string longitude;
+                    stringstream oss;
+                    oss.setf(ostringstream::showpoint);
+                    oss << location.latitude();
+                    latitude = oss.str();
+                    oss.str("");
+                    oss << location.longitude();
+                    longitude = oss.str();
+                    query.push_back({"saddr", latitude + "," + longitude });
+
+                }
+                std::string newAddress = boost::replace_all_copy(pd.address, " ", "+");
+                query.push_back({"daddr", newAddress});
+                builder.add_tuple({
+                                      {"id", sc::Variant("address")},
+                                      {"label", sc::Variant("Navigate")},
+                                      {"uri", sc::Variant( client_.uri(host, path, query) )}
                                   });
             }
             bttnWg.add_attribute_value("actions", builder.end());
