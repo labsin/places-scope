@@ -6,6 +6,7 @@
 #include <core/net/http/response.h>
 #include <json/json.h>
 #include <string>
+#include <sstream>
 
 namespace http = core::net::http;
 namespace json = Json;
@@ -355,6 +356,16 @@ Client::PlaceDetails Client::placeDetails(const string &placeId, const std::stri
                 item["website"].asString(),
                 reviewList
     };
+}
+
+string Client::uri(const net::Uri::Host &host, const net::Uri::Path &path, const net::Uri::QueryParameters &parameters)
+{
+    // Create a new HTTP client
+    std::shared_ptr<http::Client> client = http::make_client();
+
+    // Build the URI from its components
+    net::Uri uri = net::make_uri(host, path, parameters);
+    return client->uri_to_string(uri);
 }
 
 void Client::get(const net::Uri::Path &path,

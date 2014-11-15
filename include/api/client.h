@@ -188,6 +188,10 @@ public:
 
     Client::PlaceRes nearby(const std::string &query, const unity::scopes::Location location, const std::string language = "en", const std::string type = "");
     Client::PlaceRes nearby(unity::scopes::Location location, const std::string language = "en", const std::string type = "");
+
+    std::string uri(const core::net::Uri::Host &host, const core::net::Uri::Path &path,
+                    const core::net::Uri::QueryParameters &parameters);
+
 protected:
     void get(const core::net::Uri::Path &path,
              const core::net::Uri::QueryParameters &parameters,
