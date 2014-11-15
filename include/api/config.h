@@ -14,6 +14,8 @@ struct Config {
      */
     std::string apiroot { "https://maps.googleapis.com/maps/api" };
 
+    std::string directory { "/" };
+
     /*
      * The custom HTTP user agent string for this library
      */
