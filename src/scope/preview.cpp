@@ -27,7 +27,12 @@ void Preview::cancelled() {
 
 void Preview::run(sc::PreviewReplyProxy const& reply) {
     try {
-        Client::PlaceDetails pd = client_.placeDetails(sc::PreviewQueryBase::result()["placeId"].get_string(), sc::PreviewQueryBase::action_metadata().locale());
+        sc::Result result = sc::PreviewQueryBase::result();
+        if(!result.contains("placeId") || result["placeId"].which() != sc::Variant::String) {
+            reply->error(std::make_exception_ptr(std::runtime_error("No placeId")));
+            return;
+        }
+        Client::PlaceDetails pd = client_.placeDetails(result["placeId"].get_string(), sc::PreviewQueryBase::action_metadata().locale());
 
         // Support three different column layouts
         sc::ColumnLayout layout1col(1), layout2col(2), layout3col(3);
@@ -38,8 +43,8 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         layout2col.add_column({"openinghours", "map","reviews"});
 
         layout3col.add_column({"header","gal", "address", "openNow", "number", "buttons"});
-        layout3col.add_column({"openinghours"});
-        layout3col.add_column({"map","reviews"});
+        layout3col.add_column({"map","openinghours"});
+        layout3col.add_column({"reviews"});
 
         // Define the header section
         sc::PreviewWidget headerWg("header", "header");
@@ -62,7 +67,8 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
 
         sc::PreviewWidget mapWg("map", "image");
         if(pd.location.lat != 0.0 || pd.location.lang != 0.0 ){
-            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&scale=2&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lang)));
+            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=370x200&maptype=roadmap&scale=4&zoom=14&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lang)));
+            mapWg.add_attribute_value("zoomable", sc::Variant("true"));
         }
 
         // Define the summary section
@@ -95,7 +101,6 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         if(!(pd.phoneNr.empty() && pd.website.empty())){
             sc::VariantBuilder builder;
             if(!pd.phoneNr.empty()){
-                PreviewQueryBase::action_metadata().set_hint("phoneNr",sc::Variant(pd.phoneNr));
                 string pn = pd.phoneNr;
                 boost::algorithm::erase_all(pn, " ");
                 builder.add_tuple({
@@ -105,7 +110,6 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                                   });
             }
             if(!pd.website.empty()){
-                PreviewQueryBase::action_metadata().set_hint("website",sc::Variant(pd.website));
                 builder.add_tuple({
                                       {"id", sc::Variant("website")},
                                       {"label", sc::Variant("Website")},
@@ -119,6 +123,13 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         onWg.add_attribute_value("text", sc::Variant(openNowString));
         nrWg.add_attribute_value("text", sc::Variant("Tel: " + pd.phoneNr));
         ohWg.add_attribute_value("text", sc::Variant(openingHoursString));
+
+//        sc::VariantArray types;
+//        int i=0;
+//        for(const auto& type : pd.types) {
+//            types.push_back(sc::Variant(type));
+//            i++;
+//        }
 
         sc::PreviewWidget revWg("reviews", "reviews");
         if(!pd.reviewList.empty()){
