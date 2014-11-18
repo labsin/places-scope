@@ -9,6 +9,8 @@
 
 #include <core/net/uri.h>
 
+#include "scope/localization.h"
+
 #include <boost/algorithm/string.hpp>
 
 #include <iostream>
@@ -80,12 +82,13 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         sc::PreviewWidget nrWg("number", "text");
         sc::PreviewWidget ohWg("openinghours", "text");
         // It has a text property, mapped to the result's description property
-        std::string openNowString = "Is open: ";
+        std::string openNowString = _("Now open:");
+        openNowString += " ";
         std::string openingHoursString("");
         if(pd.openingHours.valid) {
-            openNowString.append(pd.openingHours.openNow?"yes":"no");
+            openNowString.append(pd.openingHours.openNow?_("yes"):_("no"));
             if(pd.openingHours.hasWeekdayText) {
-                openingHoursString.append("Opening Hours:");
+                openingHoursString.append(_("Opening Hours:"));
                 for(auto day : pd.openingHours.periodsStrings) {
                     openingHoursString.append("\n"+day);
                 }
@@ -97,7 +100,7 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
             }
         }
         else {
-            openNowString.append("unknown");
+            openNowString.append(_("unknown"));
         }
 
         sc::PreviewWidget bttnWg("buttons", "actions");
@@ -108,14 +111,14 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                 boost::algorithm::erase_all(pn, " ");
                 builder.add_tuple({
                                       {"id", sc::Variant("call")},
-                                      {"label", sc::Variant("Call")},
+                                      {"label", sc::Variant(_("Call"))},
                                       {"uri", sc::Variant("tel:///"+pn)}
                                   });
             }
             if(!pd.website.empty()){
                 builder.add_tuple({
                                       {"id", sc::Variant("website")},
-                                      {"label", sc::Variant("Website")},
+                                      {"label", sc::Variant(_("Website"))},
                                       {"uri", sc::Variant(pd.website)}
                                   });
             }
@@ -141,16 +144,16 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                 query.push_back({"daddr", newAddress});
                 builder.add_tuple({
                                       {"id", sc::Variant("address")},
-                                      {"label", sc::Variant("Navigate")},
+                                      {"label", sc::Variant(_("Navigate"))},
                                       {"uri", sc::Variant( client_.uri(host, path, query) )}
                                   });
             }
             bttnWg.add_attribute_value("actions", builder.end());
         }
 
-        addrWg.add_attribute_value("text", sc::Variant("Address: "+pd.address));
+        addrWg.add_attribute_value("text", sc::Variant(std::string(_("Address:")) + " " + pd.address));
         onWg.add_attribute_value("text", sc::Variant(openNowString));
-        nrWg.add_attribute_value("text", sc::Variant("Tel: " + pd.phoneNr));
+        nrWg.add_attribute_value("text", sc::Variant(std::string(_("Tel:")) + " " + pd.phoneNr));
         ohWg.add_attribute_value("text", sc::Variant(openingHoursString));
 
 //        sc::VariantArray types;

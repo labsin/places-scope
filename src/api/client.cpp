@@ -1,5 +1,7 @@
 #include <api/client.h>
 
+#include "scope/localization.h"
+
 #include <core/net/error.h>
 #include <core/net/http/client.h>
 #include <core/net/http/content_type.h>
@@ -14,6 +16,27 @@ namespace net = core::net;
 
 using namespace api;
 using namespace std;
+
+const string Client::dayOfWeek(Client::Day day) {
+    switch(day) {
+    case SUN:
+        return _("Sunday");
+    case MON:
+        return _("Monday");
+    case TUE:
+        return _("Tuesday");
+    case WED:
+        return _("Wednesday");
+    case THU:
+        return _("Thursday");
+    case FRI:
+        return _("Friday");
+    case SAT:
+        return _("Saturday");
+    default:
+        return "";
+    }
+}
 
 Client::Client(Config::Ptr config) :
     config_(config), cancelled_(false) {

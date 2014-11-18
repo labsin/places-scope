@@ -61,26 +61,7 @@ public:
         Day day = UNKNOWN;
     };
 
-    const static std::string dayOfWeek(Day day) {
-        switch(day) {
-        case SUN:
-            return "Sunday";
-        case MON:
-            return "Monday";
-        case TUE:
-            return "Tuesday";
-        case WED:
-            return "Wednesday";
-        case THU:
-            return "Thursday";
-        case FRI:
-            return "Friday";
-        case SAT:
-            return "Saturday";
-        default:
-            return "";
-        }
-    }
+    const static std::string dayOfWeek(Day day);
 
     struct OpeningHours {
         OpeningHours():valid(false) {}

@@ -26,7 +26,7 @@ using namespace scope;
 
 const static string LOCATION_TEMPLATE =
         R"(
-        {
+{
         "schema-version": 1,
         "template": {
         "category-layout": "grid",
@@ -49,7 +49,7 @@ const static string LOCATION_TEMPLATE =
 
 const static string NEARBY_TEMPLATE =
         R"(
-        {
+{
         "schema-version": 1,
         "template": {
         "category-layout": "horizontal-list",
@@ -69,7 +69,7 @@ const static string NEARBY_TEMPLATE =
 
 const static string NEARBY_TEMPLATE_SOLO =
         R"(
-        {
+{
         "schema-version": 1,
         "template": {
         "category-layout": "grid",
@@ -87,128 +87,134 @@ const static string NEARBY_TEMPLATE_SOLO =
         }
         )";
 
-const static std::map<std::string, std::string> TYPES_EST = {
-    {"All", "establishment"},
-    {"Art gallery", "art_gallery"},
-    {"Atm", "atm"},
-    {"Beauty Salon", "beauty_salon"},
-    {"Car Rental", "car_rental"},
-    {"Car Repair", "car_repair"},
-    {"Car Wash", "car_wash"},
-    {"Cemetry", "cemetery"},
-    {"City Hall", "city_hall"},
-    {"Courthouse", "courthouse"},
-    {"Electrician", "electrician"},
-    {"Embassy", "embassy"},
-    {"Fire Station", "fire_station"},
-    {"Florist", "florist"},
-    {"Funeral Home", "funeral_home"},
-    {"General Contractor", "general_contractor"},
-    {"Hair Care", "hair_care"},
-    {"Hospital", "hospital"},
-    {"Laundry", "laundry"},
-    {"Local Government Office", "local_government_office"},
-    {"Locksmith", "locksmith"},
-    {"Moving Company", "moving_company"},
-    {"Painter", "painter"},
-    {"Plumber", "plumber"},
-    {"Police", "police"},
-    {"Post Office", "post_office"},
-    {"Real Estate Agency", "real_estate_agency"},
-    {"Roofing Contractor", "roofing_contractor"},
-    {"School", "school"},
-    {"Storage", "storage"},
-    {"Travel Agency", "travel_agency"},
-    {"University", "university"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_FUN = {
-    {"All", "amusement_park|aquarium|bar|bowling_alley|cafe|casino|gym|library|movie_rental|movie_theater|museum|night_club|park|shopping_mall|spa|stadium|zoo"},
-    {"Amusement Park", "amusement_park"},
-    {"Aquarium", "aquarium"},
-    {"Bar", "bar"},
-    {"Bowling Alley", "bowling_alley"},
-    {"Cafe", "cafe"},
-    {"Casino", "casino"},
-    {"Gym", "gym"},
-    {"Library", "library"},
-    {"Movie Rental", "movie_rental"},
-    {"Movie Theater", "movie_theater"},
-    {"Museum", "museum"},
-    {"Night Club", "night_club"},
-    {"Park", "park"},
-    {"Shopping Mall", "shopping_mall"},
-    {"Spa", "spa"},
-    {"Stadium", "stadium"},
-    {"Zoo", "zoo"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_WORSH = {
-    {"All", "place_of_worship"},
-    {"Church", "church"},
-    {"Hindu Temple", "hindu_temple"},
-    {"Mosque", "mosque"},
-    {"synagogue", "synagogue"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_STORE = {
-    {"All", "store"},
-    {"Bicycle Store", "bicycle_store"},
-    {"Book Store", "book_store"},
-    {"Car Dealer", "car_dealer"},
-    {"Clothing Store", "clothing_store"},
-    {"Convenience Store", "convenience_store"},
-    {"Department Store", "department_store"},
-    {"Electronics Store", "electronics_store"},
-    {"Furniture Store", "furniture_store"},
-    {"Grocery or Supermarket", "grocery_or_supermarket"},
-    {"Hardware Store", "hardware_store"},
-    {"Home Goods Store", "home_goods_store"},
-    {"Jewelry Store", "jewelry_store"},
-    {"Liquor Store", "liquor_store"},
-    {"Pet Store", "pet_store"},
-    {"Shoe Store", "shoe_store"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_LODGING = {
-    {"All", "lodging"},
-    {"Campground", "campground"},
-    {"RV Park", "rv_park"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_TRANSPORT = {
-    {"All", "airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station"},
-    {"Airport", "airport"},
-    {"Bus Station", "bus_station"},
-    {"Gas Station", "gas_station"},
-    {"Parking", "parking"},
-    {"Subway Station", "subway_station"},
-    {"Taxi Stand", "taxi_stand"},
-    {"Train Station", "train_station"}
-};
-
-const static std::map<std::string, std::string> TYPES_EST_FOOD = {
-    {"All", "food"},
-    {"Bakery", "bakery"},
-    {"Meal Delivery", "meal_delivery"},
-    {"Meal Takeaway", "meal_takeaway"},
-    {"Restaurant", "restaurant"}
-};
-
-const static std::map<std::string, std::string> TYPES_HEALTH = {
-    {"All", "health"},
-    {"Doctor", "doctor"},
-    {"Dentist", "dentist"},
-    {"Pharmacy", "pharmacy"},
-    {"Physiotherapist", "physiotherapist"},
-    {"Veterinary Care", "veterinary_care"}
-};
-
-const static std::map<std::string, std::string> TYPES_FINANCE = {
-    {"All", "finance"},
-    {"Bank", "bank"},
-    {"Lawyer", "lawyer"},
-    {"Insurance Agency", "insurance_agency"}
+class CatTypes {
+public:
+    std::map<std::string, std::string> TYPES_EST;
+    std::map<std::string, std::string> TYPES_EST_FUN;
+    std::map<std::string, std::string> TYPES_EST_WORSH;
+    std::map<std::string, std::string> TYPES_EST_STORE;
+    std::map<std::string, std::string> TYPES_EST_LODGING;
+    std::map<std::string, std::string> TYPES_EST_TRANSPORT;
+    std::map<std::string, std::string> TYPES_EST_FOOD;
+    std::map<std::string, std::string> TYPES_HEALTH;
+    std::map<std::string, std::string> TYPES_FINANCE;
+    CatTypes() {
+        TYPES_EST = {
+            {"All", "establishment"},
+            {_("Art gallery"), "art_gallery"},
+            {_("Atm"), "atm"},
+            {_("Beauty Salon"), "beauty_salon"},
+            {_("Car Rental"), "car_rental"},
+            {_("Car Repair"), "car_repair"},
+            {_("Car Wash"), "car_wash"},
+            {_("Cemetry"), "cemetery"},
+            {_("City Hall"), "city_hall"},
+            {_("Courthouse"), "courthouse"},
+            {_("Electrician"), "electrician"},
+            {_("Embassy"), "embassy"},
+            {_("Fire Station"), "fire_station"},
+            {_("Florist"), "florist"},
+            {_("Funeral Home"), "funeral_home"},
+            {_("General Contractor"), "general_contractor"},
+            {_("Hair Care"), "hair_care"},
+            {_("Hospital"), "hospital"},
+            {_("Laundry"), "laundry"},
+            {_("Local Government Office"), "local_government_office"},
+            {_("Locksmith"), "locksmith"},
+            {_("Moving Company"), "moving_company"},
+            {_("Painter"), "painter"},
+            {_("Plumber"), "plumber"},
+            {_("Police"), "police"},
+            {_("Post Office"), "post_office"},
+            {_("Real Estate Agency"), "real_estate_agency"},
+            {_("Roofing Contractor"), "roofing_contractor"},
+            {_("School"), "school"},
+            {_("Storage"), "storage"},
+            {_("Travel Agency"), "travel_agency"},
+            {_("University"), "university"}
+        };
+        TYPES_EST_FUN = {
+            {"All", "amusement_park|aquarium|bar|bowling_alley|cafe|casino|gym|library|movie_rental|movie_theater|museum|night_club|park|shopping_mall|spa|stadium|zoo"},
+            {_("Amusement Park"), "amusement_park"},
+            {_("Aquarium"), "aquarium"},
+            {_("Bar"), "bar"},
+            {_("Bowling Alley"), "bowling_alley"},
+            {_("Cafe"), "cafe"},
+            {_("Casino"), "casino"},
+            {_("Gym"), "gym"},
+            {_("Library"), "library"},
+            {_("Movie Rental"), "movie_rental"},
+            {_("Movie Theater"), "movie_theater"},
+            {_("Museum"), "museum"},
+            {_("Night Club"), "night_club"},
+            {_("Park"), "park"},
+            {_("Shopping Mall"), "shopping_mall"},
+            {_("Spa"), "spa"},
+            {_("Stadium"), "stadium"},
+            {_("Zoo"), "zoo"}
+        };
+        TYPES_EST_WORSH = {
+            {"All", "place_of_worship"},
+            {_("Church"), "church"},
+            {_("Hindu Temple"), "hindu_temple"},
+            {_("Mosque"), "mosque"},
+            {_("synagogue"), "synagogue"}
+        };
+        TYPES_EST_STORE = {
+            {"All", "store"},
+            {_("Bicycle Store"), "bicycle_store"},
+            {_("Book Store"), "book_store"},
+            {_("Car Dealer"), "car_dealer"},
+            {_("Clothing Store"), "clothing_store"},
+            {_("Convenience Store"), "convenience_store"},
+            {_("Department Store"), "department_store"},
+            {_("Electronics Store"), "electronics_store"},
+            {_("Furniture Store"), "furniture_store"},
+            {_("Grocery or Supermarket"), "grocery_or_supermarket"},
+            {_("Hardware Store"), "hardware_store"},
+            {_("Home Goods Store"), "home_goods_store"},
+            {_("Jewelry Store"), "jewelry_store"},
+            {_("Liquor Store"), "liquor_store"},
+            {_("Pet Store"), "pet_store"},
+            {_("Shoe Store"), "shoe_store"}
+        };
+        TYPES_EST_LODGING = {
+            {"All", "lodging"},
+            {_("Campground"), "campground"},
+            {_("RV Park"), "rv_park"}
+        };
+        TYPES_EST_TRANSPORT = {
+            {"All", "airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station"},
+            {_("Airport"), "airport"},
+            {_("Bus Station"), "bus_station"},
+            {_("Gas Station"), "gas_station"},
+            {_("Parking"), "parking"},
+            {_("Subway Station"), "subway_station"},
+            {_("Taxi Stand"), "taxi_stand"},
+            {_("Train Station"), "train_station"}
+        };
+        TYPES_EST_FOOD = {
+            {"All", "food"},
+            {_("Bakery"), "bakery"},
+            {_("Meal Delivery"), "meal_delivery"},
+            {_("Meal Takeaway"), "meal_takeaway"},
+            {_("Restaurant"), "restaurant"}
+        };
+        TYPES_HEALTH = {
+            {"All", "health"},
+            {_("Doctor"), "doctor"},
+            {_("Dentist"), "dentist"},
+            {_("Pharmacy"), "pharmacy"},
+            {_("Physiotherapist"), "physiotherapist"},
+            {_("Veterinary Care"), "veterinary_care"}
+        };
+        TYPES_FINANCE = {
+            {"All", "finance"},
+            {_("Bank"), "bank"},
+            {_("Lawyer"), "lawyer"},
+            {_("Insurance Agency"), "insurance_agency"}
+        };
+    }
 };
 
 Query::Query(const sc::CannedQuery &query, const sc::SearchMetadata &metadata,
@@ -235,11 +241,11 @@ void Query::run(sc::SearchReplyProxy const& reply) {
         client_.setRadius(s_radius);
         sc::Category::SCPtr nearyby_cat;
         if(query_string.empty()) {
-            nearyby_cat = reply->register_category("nearbycarousel", "Nearby", "",
+            nearyby_cat = reply->register_category("nearbycarousel", _("Nearby"), "",
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE_SOLO));
         }
         else {
-            nearyby_cat = reply->register_category("nearbycarousel", "Nearby", "",
+            nearyby_cat = reply->register_category("nearbycarousel", _("Nearby"), "",
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE));
         }
 
@@ -247,15 +253,16 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             Client::PlaceRes nearbyList;
 
             {
-                sc::Department::SPtr all_depts = sc::Department::create("", query, "Places");
+                CatTypes constTypes;
+                sc::Department::SPtr all_depts = sc::Department::create("", query, _("Places"));
 
-                sc::Department::SPtr estDep = sc::Department::create(TYPES_EST.at("All"), query, "Establishments");
+                sc::Department::SPtr estDep = sc::Department::create(constTypes.TYPES_EST.at("All"), query, _("Establishments"));
                 all_depts->add_subdepartment(estDep);
 
-                sc::Department::SPtr estFoodDep = sc::Department::create(TYPES_EST_FOOD.at(std::string("All")), query, "Food");
+                sc::Department::SPtr estFoodDep = sc::Department::create(constTypes.TYPES_EST_FOOD.at(std::string("All")), query, _("Food"));
 
-                for(auto& kv : TYPES_EST_FOOD) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_FOOD) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -263,10 +270,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estFoodDep);
 
-                sc::Department::SPtr estFunDep = sc::Department::create(TYPES_EST_FUN.at(std::string("All")), query, "Fun");
+                sc::Department::SPtr estFunDep = sc::Department::create(constTypes.TYPES_EST_FUN.at(std::string("All")), query, _("Fun"));
 
-                for(auto& kv : TYPES_EST_FUN) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_FUN) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -274,10 +281,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estFunDep);
 
-                sc::Department::SPtr estLodgDep = sc::Department::create(TYPES_EST_LODGING.at(std::string("All")), query, "Lodging");
+                sc::Department::SPtr estLodgDep = sc::Department::create(constTypes.TYPES_EST_LODGING.at(std::string("All")), query, _("Lodging"));
 
-                for(auto& kv : TYPES_EST_LODGING) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_LODGING) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -285,10 +292,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estLodgDep);
 
-                sc::Department::SPtr estStoreDep = sc::Department::create(TYPES_EST_STORE.at(std::string("All")), query, "Store");
+                sc::Department::SPtr estStoreDep = sc::Department::create(constTypes.TYPES_EST_STORE.at(std::string("All")), query, _("Store"));
 
-                for(auto& kv : TYPES_EST_STORE) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_STORE) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -296,10 +303,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estStoreDep);
 
-                sc::Department::SPtr estTransDep = sc::Department::create(TYPES_EST_TRANSPORT.at(std::string("All")), query, "Transport");
+                sc::Department::SPtr estTransDep = sc::Department::create(constTypes.TYPES_EST_TRANSPORT.at(std::string("All")), query, _("Transport"));
 
-                for(auto& kv : TYPES_EST_TRANSPORT) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_TRANSPORT) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -307,10 +314,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estTransDep);
 
-                sc::Department::SPtr estWorshDep = sc::Department::create(TYPES_EST_WORSH.at(std::string("All")), query, "Place of Worship");
+                sc::Department::SPtr estWorshDep = sc::Department::create(constTypes.TYPES_EST_WORSH.at(std::string("All")), query, _("Place of Worship"));
 
-                for(auto& kv : TYPES_EST_WORSH) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST_WORSH) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -318,18 +325,18 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estWorshDep);
 
-                for(auto& kv : TYPES_EST) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_EST) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
                     estDep->add_subdepartment(tmpDep);
                 }
 
-                sc::Department::SPtr finDep = sc::Department::create(TYPES_FINANCE.at(std::string("All")), query, "Finance");
+                sc::Department::SPtr finDep = sc::Department::create(constTypes.TYPES_FINANCE.at(std::string("All")), query, _("Finance"));
 
-                for(auto& kv : TYPES_FINANCE) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_FINANCE) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -337,10 +344,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 all_depts->add_subdepartment(finDep);
 
-                sc::Department::SPtr healthDep = sc::Department::create(TYPES_HEALTH.at(std::string("All")), query, "Health");
+                sc::Department::SPtr healthDep = sc::Department::create(constTypes.TYPES_HEALTH.at(std::string("All")), query, _("Health"));
 
-                for(auto& kv : TYPES_HEALTH) {
-                    if(kv.first.compare("All") == 0) {
+                for(auto& kv : constTypes.TYPES_HEALTH) {
+                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
