@@ -39,25 +39,30 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         }
         Client::PlaceDetails pd = client_.placeDetails(result["placeId"].get_string(), sc::PreviewQueryBase::action_metadata().locale());
 
-        // Support three different column layouts
-        sc::ColumnLayout layout1col(1), layout2col(2), layout3col(3);
+        sc::PreviewWidgetList toPush;
 
-        layout1col.add_column({"header","gal", "address", "openNow", "number", "buttons", "openinghours", "map", "reviews"});
+        std::vector<std::string> col1;
+        std::vector<std::string> col2;
+        std::vector<std::string> col3;
 
-        layout2col.add_column({"header","gal", "address", "openNow", "number", "buttons"});
-        layout2col.add_column({"openinghours", "map","reviews"});
+//        layout1col.add_column({"header","gal", "address", "openNow", "number", "buttons", "openinghours", "map", "reviews"});
 
-        layout3col.add_column({"header","gal", "address", "openNow", "number", "buttons"});
-        layout3col.add_column({"map","openinghours"});
-        layout3col.add_column({"reviews"});
+//        layout2col.add_column({"header","gal", "address", "openNow", "number", "buttons"});
+//        layout2col.add_column({"openinghours", "map","reviews"});
+
+//        layout3col.add_column({"header","gal", "address", "openNow", "number", "buttons"});
+//        layout3col.add_column({"map","openinghours"});
+//        layout3col.add_column({"reviews"});
 
         // Define the header section
         sc::PreviewWidget headerWg("header", "header");
-        // It has title and a subtitle properties
         headerWg.add_attribute_mapping("title", "name");
         headerWg.add_attribute_mapping("subtitle", "score");
         headerWg.add_attribute_mapping("mascot", "icon");
+        toPush.push_back(headerWg);
+        col1.push_back("header");
 
+        // Define the image section
         sc::VariantArray images;
         for (const Client::Photo& photo : pd.photoList) {
             images.push_back(sc::Variant("https://maps.googleapis.com/maps/api/place/photo?maxheight=200&maxwidth=200&photoreference="+photo.reference+"&key="+client_.config()->id));
@@ -65,46 +70,37 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         if(pd.photoList.empty()) {
             images.push_back(sc::Variant(pd.icon));
         }
-
-        // Define the image section
         sc::PreviewWidget imageWg("gal", "gallery");
         imageWg.add_attribute_value("sources", sc::Variant(images));
-
-        sc::PreviewWidget mapWg("map", "image");
-        if(pd.location.lat != 0.0 || pd.location.lang != 0.0 ){
-            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=370x200&maptype=roadmap&scale=4&zoom=14&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lang)));
-            mapWg.add_attribute_value("zoomable", sc::Variant("true"));
-        }
+        toPush.push_back(imageWg);
+        col1.push_back("gal");
 
         // Define the summary section
-        sc::PreviewWidget addrWg("address", "text");
-        sc::PreviewWidget onWg("openNow", "text");
-        sc::PreviewWidget nrWg("number", "text");
-        sc::PreviewWidget ohWg("openinghours", "text");
-        // It has a text property, mapped to the result's description property
-        std::string openNowString = _("Now open:");
-        openNowString += " ";
-        std::string openingHoursString("");
-        if(pd.openingHours.valid) {
-            openNowString.append(pd.openingHours.openNow?_("yes"):_("no"));
-            if(pd.openingHours.hasWeekdayText) {
-                openingHoursString.append(_("Opening Hours:"));
-                for(auto day : pd.openingHours.periodsStrings) {
-                    openingHoursString.append("\n"+day);
-                }
-            }
-            else if(!pd.openingHours.periods.empty()) {
-                for(Client::OpeningsDay day : pd.openingHours.periods) {
-                    openingHoursString.append("\n"+Client::dayOfWeek(day.day)+": "+std::to_string(day.openHour)+":"+std::to_string(day.openMinutes)+"-"+std::to_string(day.closeHour)+":"+std::to_string(day.closeMinutes));
-                }
-            }
-        }
-        else {
-            openNowString.append(_("unknown"));
+        if(!pd.address.empty()){
+            sc::PreviewWidget addrWg("address", "text");
+            addrWg.add_attribute_value("text", sc::Variant(std::string(_("Address:")) + " " + pd.address));
+            toPush.push_back(addrWg);
+            col1.push_back("address");
         }
 
-        sc::PreviewWidget bttnWg("buttons", "actions");
-        if(!(pd.phoneNr.empty() && pd.website.empty())){
+        if(pd.openingHours.valid) {
+            std::string openNowString = _("Now open:");
+            openNowString += " ";
+            openNowString.append(pd.openingHours.openNow?_("yes"):_("no"));
+            sc::PreviewWidget onWg("openNow", "text");
+            onWg.add_attribute_value("text", sc::Variant(openNowString));
+            toPush.push_back(onWg);
+            col1.push_back("openNow");
+        }
+
+        if(!pd.phoneNr.empty()){
+            sc::PreviewWidget nrWg("number", "text");
+            nrWg.add_attribute_value("text", sc::Variant(std::string(_("Tel:")) + " " + pd.phoneNr));
+            toPush.push_back(nrWg);
+            col1.push_back("number");
+        }
+
+        if(!(pd.phoneNr.empty() && pd.website.empty()) && pd.address.empty()){
             sc::VariantBuilder builder;
             if(!pd.phoneNr.empty()){
                 string pn = pd.phoneNr;
@@ -148,13 +144,11 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                                       {"uri", sc::Variant( client_.uri(host, path, query) )}
                                   });
             }
+            sc::PreviewWidget bttnWg("buttons", "actions");
             bttnWg.add_attribute_value("actions", builder.end());
+            toPush.push_back(bttnWg);
+            col1.push_back("buttons");
         }
-
-        addrWg.add_attribute_value("text", sc::Variant(std::string(_("Address:")) + " " + pd.address));
-        onWg.add_attribute_value("text", sc::Variant(openNowString));
-        nrWg.add_attribute_value("text", sc::Variant(std::string(_("Tel:")) + " " + pd.phoneNr));
-        ohWg.add_attribute_value("text", sc::Variant(openingHoursString));
 
 //        sc::VariantArray types;
 //        int i=0;
@@ -163,7 +157,33 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
 //            i++;
 //        }
 
-        sc::PreviewWidget revWg("reviews", "reviews");
+        if(pd.location.lat != 0.0 || pd.location.lang != 0.0 ){
+            sc::PreviewWidget mapWg("map", "image");
+            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=370x200&maptype=roadmap&scale=4&zoom=14&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lang)));
+            mapWg.add_attribute_value("zoomable", sc::Variant("true"));
+            toPush.push_back(mapWg);
+            col2.push_back("map");
+        }
+
+        if(pd.openingHours.valid) {
+            std::string openingHoursString("");
+            if(pd.openingHours.hasWeekdayText) {
+                openingHoursString.append(_("Opening Hours:"));
+                for(auto day : pd.openingHours.periodsStrings) {
+                    openingHoursString.append("\n"+day);
+                }
+            }
+            else if(!pd.openingHours.periods.empty()) {
+                for(Client::OpeningsDay day : pd.openingHours.periods) {
+                    openingHoursString.append("\n"+Client::dayOfWeek(day.day)+": "+std::to_string(day.openHour)+":"+std::to_string(day.openMinutes)+"-"+std::to_string(day.closeHour)+":"+std::to_string(day.closeMinutes));
+                }
+            }
+            sc::PreviewWidget ohWg("openinghours", "text");
+            ohWg.add_attribute_value("text", sc::Variant(openingHoursString));
+            toPush.push_back(ohWg);
+            col2.push_back("openinghours");
+        }
+
         if(!pd.reviewList.empty()){
             sc::VariantBuilder builder;
             for (const Client::Review &review : pd.reviewList) {
@@ -173,17 +193,35 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
                                       {"review", sc::Variant(review.text)}
                                   });
             }
+            sc::PreviewWidget revWg("reviews", "reviews");
             revWg.add_attribute_value("reviews", builder.end());
+            toPush.push_back(revWg);
+            col3.push_back("reviews");
         }
-        else {
-            revWg.add_attribute_value("reviews", sc::Variant());
-        }
+
+        sc::ColumnLayout layout1col(1), layout2col(2), layout3col(3);
+
+        std::vector<std::string> colLayout1Col1;
+        colLayout1Col1.insert(colLayout1Col1.end(), col1.begin(), col1.end());
+        colLayout1Col1.insert(colLayout1Col1.end(), col2.begin(), col2.end());
+        colLayout1Col1.insert(colLayout1Col1.end(), col3.begin(), col3.end());
+        std::vector<std::string> colLayout2Col2;
+        colLayout2Col2.insert(colLayout2Col2.end(), col2.begin(), col2.end());
+        colLayout2Col2.insert(colLayout2Col2.end(), col3.begin(), col3.end());
+
+        layout1col.add_column(colLayout1Col1);
+
+        layout2col.add_column(col1);
+        layout2col.add_column(colLayout2Col2);
+
+        layout3col.add_column(col1);
+        layout3col.add_column(col2);
+        layout3col.add_column(col3);
 
         // Register the layouts we just created
         reply->register_layout( { layout1col, layout2col, layout3col });
 
-        // Push each of the sections
-        reply->push( { headerWg, imageWg, addrWg, onWg, nrWg, ohWg, revWg, bttnWg, mapWg });
+        reply->push( toPush );
     } catch (domain_error &e) {
         // Handle exceptions being thrown by the client API
         cerr << e.what() << endl;
