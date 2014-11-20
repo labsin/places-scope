@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-16 22:02+0100\n"
+"POT-Creation-Date: 2014-11-20 21:53+0100\n"
 "PO-Revision-Date: 2014-11-16 21:52+0100\n"
 "Last-Translator: Sam Segers <sam.sgrs@gmail.com>\n"
 "Language-Team: \n"
@@ -17,159 +17,163 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: src/scope/preview.cpp:154
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:2
+msgid "A scope for looking up places nearby"
+msgstr "Een scope voor het opzoeken van nabijgelegen plaatsen"
+
+#: src/scope/preview.cpp:81
 msgid "Address:"
 msgstr "Adres:"
 
-#: src/scope/query.cpp:181
+#: src/scope/query.cpp:188
 msgid "Airport"
 msgstr "Luchthaven"
 
-#: src/scope/query.cpp:127
+#: src/scope/query.cpp:138
 msgid "Amusement Park"
 msgstr "Pretpark"
 
-#: src/scope/query.cpp:128
+#: src/scope/query.cpp:139
 msgid "Aquarium"
 msgstr "Aquarium"
 
-#: src/scope/query.cpp:92
+#: src/scope/query.cpp:104
 msgid "Art gallery"
 msgstr "Kunstgalerie"
 
-#: src/scope/query.cpp:93
+#: src/scope/query.cpp:105
 msgid "Atm"
 msgstr "Bancontact"
 
-#: src/scope/query.cpp:192
+#: src/scope/query.cpp:198
 msgid "Bakery"
 msgstr "Bakkerij"
 
-#: src/scope/query.cpp:209
+#: src/scope/query.cpp:213
 msgid "Bank"
 msgstr "Bank"
 
-#: src/scope/query.cpp:129
+#: src/scope/query.cpp:140
 msgid "Bar"
 msgstr "Bar"
 
-#: src/scope/query.cpp:94
+#: src/scope/query.cpp:106
 msgid "Beauty Salon"
 msgstr "Schoonheidssalon"
 
-#: src/scope/query.cpp:156
+#: src/scope/query.cpp:165
 msgid "Bicycle Store"
 msgstr "Fietswinkel"
 
-#: src/scope/query.cpp:157
+#: src/scope/query.cpp:166
 msgid "Book Store"
 msgstr "Boekenwinkel"
 
-#: src/scope/query.cpp:130
+#: src/scope/query.cpp:141
 msgid "Bowling Alley"
 msgstr "Bowling"
 
-#: src/scope/query.cpp:182
+#: src/scope/query.cpp:189
 msgid "Bus Station"
 msgstr "Bushalte"
 
-#: src/scope/query.cpp:131
+#: src/scope/query.cpp:142
 msgid "Cafe"
 msgstr "Café"
 
-#: src/scope/preview.cpp:114
+#: src/scope/scope.cpp:23 src/scope/preview.cpp:110
 msgid "Call"
 msgstr "Bellen"
 
-#: src/scope/query.cpp:175
+#: src/scope/query.cpp:183
 msgid "Campground"
 msgstr "Kampeerterrein"
 
-#: src/scope/query.cpp:158
+#: src/scope/query.cpp:167
 msgid "Car Dealer"
 msgstr "Autodealer"
 
-#: src/scope/query.cpp:95
+#: src/scope/query.cpp:107
 msgid "Car Rental"
 msgstr "Autoverhuur"
 
-#: src/scope/query.cpp:96
+#: src/scope/query.cpp:108
 msgid "Car Repair"
 msgstr "Autoreparaties"
 
-#: src/scope/query.cpp:97
+#: src/scope/query.cpp:109
 msgid "Car Wash"
 msgstr "Car Wash"
 
-#: src/scope/query.cpp:132
+#: src/scope/query.cpp:143
 msgid "Casino"
 msgstr "Casino"
 
-#: src/scope/query.cpp:98
+#: src/scope/query.cpp:110
 msgid "Cemetry"
 msgstr "Kerkhof"
 
-#: src/scope/query.cpp:148
+#: src/scope/query.cpp:158
 msgid "Church"
 msgstr "Kerk"
 
-#: src/scope/query.cpp:99
+#: src/scope/query.cpp:111
 msgid "City Hall"
 msgstr "Stadhuis"
 
-#: src/scope/query.cpp:159
+#: src/scope/query.cpp:168
 msgid "Clothing Store"
 msgstr "Klerenwinkel"
 
-#: src/scope/query.cpp:160
+#: src/scope/query.cpp:169
 msgid "Convenience Store"
 msgstr "Gemakswinkel"
 
-#: src/scope/query.cpp:100
+#: src/scope/query.cpp:112
 msgid "Courthouse"
 msgstr "Gerechtsgebouw"
 
-#: src/scope/query.cpp:201
+#: src/scope/query.cpp:206
 msgid "Dentist"
 msgstr "Tandarts"
 
-#: src/scope/query.cpp:161
+#: src/scope/query.cpp:170
 msgid "Department Store"
 msgstr "Warenhuis"
 
-#: src/scope/query.cpp:200
+#: src/scope/query.cpp:205
 msgid "Doctor"
 msgstr "Dokter"
 
-#: src/scope/query.cpp:101
+#: src/scope/query.cpp:113
 msgid "Electrician"
 msgstr "Electricien"
 
-#: src/scope/query.cpp:162
+#: src/scope/query.cpp:171
 msgid "Electronics Store"
 msgstr "Electronica Winkel"
 
-#: src/scope/query.cpp:102
+#: src/scope/query.cpp:114
 msgid "Embassy"
 msgstr "Embassade"
 
-#: src/scope/query.cpp:252
+#: src/scope/query.cpp:259
 msgid "Establishments"
 msgstr "Vestiging"
 
-#: src/scope/query.cpp:329
+#: src/scope/query.cpp:336
 msgid "Finance"
 msgstr "Financiën"
 
-#: src/scope/query.cpp:103
+#: src/scope/query.cpp:115
 msgid "Fire Station"
 msgstr "Brandweerkazerne"
 
-#: src/scope/query.cpp:104
+#: src/scope/query.cpp:116
 msgid "Florist"
 msgstr "Bloemist"
 
-#: src/scope/query.cpp:255
+#: src/scope/query.cpp:262
 msgid "Food"
 msgstr "Eten"
 
@@ -177,99 +181,99 @@ msgstr "Eten"
 msgid "Friday"
 msgstr "Vrijdag"
 
-#: src/scope/query.cpp:266
+#: src/scope/query.cpp:273
 msgid "Fun"
 msgstr "Plezier"
 
-#: src/scope/query.cpp:105
+#: src/scope/query.cpp:117
 msgid "Funeral Home"
 msgstr "Uitvaartcentrum"
 
-#: src/scope/query.cpp:163
+#: src/scope/query.cpp:172
 msgid "Furniture Store"
 msgstr "Meubelwinkel"
 
-#: src/scope/query.cpp:183
+#: src/scope/query.cpp:190
 msgid "Gas Station"
 msgstr "Tankstation"
 
-#: src/scope/query.cpp:106
+#: src/scope/query.cpp:118
 msgid "General Contractor"
 msgstr "Aannemer"
 
-#: src/scope/query.cpp:164
+#: src/scope/query.cpp:173
 msgid "Grocery or Supermarket"
 msgstr "Supermarket"
 
-#: src/scope/query.cpp:133
+#: src/scope/query.cpp:144
 msgid "Gym"
 msgstr "Fitness"
 
-#: src/scope/query.cpp:107
+#: src/scope/query.cpp:119
 msgid "Hair Care"
 msgstr "Kapper"
 
-#: src/scope/query.cpp:165
+#: src/scope/query.cpp:174
 msgid "Hardware Store"
 msgstr "Bouwmarkt"
 
-#: src/scope/query.cpp:340
+#: src/scope/query.cpp:347
 msgid "Health"
 msgstr "Gezondheid"
 
-#: src/scope/query.cpp:149
+#: src/scope/query.cpp:159
 msgid "Hindu Temple"
 msgstr "Hindoe Tempel"
 
-#: src/scope/query.cpp:166
+#: src/scope/query.cpp:175
 msgid "Home Goods Store"
 msgstr "Decoratiewinkel"
 
-#: src/scope/query.cpp:108
+#: src/scope/query.cpp:120
 msgid "Hospital"
 msgstr "Ziekenhuis"
 
-#: src/scope/query.cpp:211
+#: src/scope/query.cpp:215
 msgid "Insurance Agency"
 msgstr "Verzekeringskantoor"
 
-#: src/scope/query.cpp:167
+#: src/scope/query.cpp:176
 msgid "Jewelry Store"
 msgstr "Juweelwinkel"
 
-#: src/scope/query.cpp:109
+#: src/scope/query.cpp:121
 msgid "Laundry"
 msgstr "Wasserij"
 
-#: src/scope/query.cpp:210
+#: src/scope/query.cpp:214
 msgid "Lawyer"
 msgstr "Advocaat"
 
-#: src/scope/query.cpp:134
+#: src/scope/query.cpp:145
 msgid "Library"
 msgstr "Bibliotheek"
 
-#: src/scope/query.cpp:168
+#: src/scope/query.cpp:177
 msgid "Liquor Store"
 msgstr "Drankhandel"
 
-#: src/scope/query.cpp:110
+#: src/scope/query.cpp:122
 msgid "Local Government Office"
 msgstr "-"
 
-#: src/scope/query.cpp:111
+#: src/scope/query.cpp:123
 msgid "Locksmith"
 msgstr "Slotenmaker"
 
-#: src/scope/query.cpp:277
+#: src/scope/query.cpp:284
 msgid "Lodging"
 msgstr "Verblijf"
 
-#: src/scope/query.cpp:193
+#: src/scope/query.cpp:199
 msgid "Meal Delivery"
 msgstr "Maaltijd Levering"
 
-#: src/scope/query.cpp:194
+#: src/scope/query.cpp:200
 msgid "Meal Takeaway"
 msgstr "Takeaway"
 
@@ -277,103 +281,113 @@ msgstr "Takeaway"
 msgid "Monday"
 msgstr "Maandag"
 
-#: src/scope/query.cpp:150
+#: src/scope/query.cpp:160
 msgid "Mosque"
 msgstr "Moskee"
 
-#: src/scope/query.cpp:135
+#: src/scope/query.cpp:146
 msgid "Movie Rental"
 msgstr "Filmverhuur"
 
-#: src/scope/query.cpp:136
+#: src/scope/query.cpp:147
 msgid "Movie Theater"
 msgstr "Cinema"
 
-#: src/scope/query.cpp:112
+#: src/scope/query.cpp:124
 msgid "Moving Company"
 msgstr "Verhuisfirma"
 
-#: src/scope/query.cpp:137
+#: src/scope/query.cpp:148
 msgid "Museum"
 msgstr "Museum"
 
-#: src/scope/preview.cpp:147
+#: src/scope/preview.cpp:143
 msgid "Navigate"
 msgstr "Navigeren"
 
-#: src/scope/query.cpp:238 src/scope/query.cpp:242
+#: src/scope/query.cpp:244 src/scope/query.cpp:248
 msgid "Nearby"
 msgstr "Dichtbij"
 
-#: src/scope/query.cpp:138
+#: src/scope/query.cpp:149
 msgid "Night Club"
 msgstr "Nachtclub"
 
-#: src/scope/preview.cpp:85
+#: src/scope/preview.cpp:87
 msgid "Now open:"
 msgstr "Nu open:"
 
-#: src/scope/preview.cpp:91
+#: src/scope/preview.cpp:171
 msgid "Opening Hours:"
 msgstr "Openingsuren:"
 
-#: src/scope/query.cpp:113
+#: src/scope/query.cpp:125
 msgid "Painter"
 msgstr "Schilder"
 
-#: src/scope/query.cpp:139
+#: src/scope/query.cpp:150
 msgid "Park"
 msgstr "Park"
 
-#: src/scope/query.cpp:184
+#: src/scope/query.cpp:191
 msgid "Parking"
 msgstr "Parking"
 
-#: src/scope/query.cpp:169
+#: src/scope/query.cpp:178
 msgid "Pet Store"
 msgstr "Dierenwinkel"
 
-#: src/scope/query.cpp:202
+#: src/scope/query.cpp:207
 msgid "Pharmacy"
 msgstr "Apotheker"
 
-#: src/scope/query.cpp:203
+#: src/scope/query.cpp:208
 msgid "Physiotherapist"
 msgstr "Fysiotherapeut"
 
-#: src/scope/query.cpp:310
+#: src/scope/query.cpp:317
 msgid "Place of Worship"
 msgstr "Bedehuis"
 
-#: src/scope/query.cpp:250
+#: src/scope/query.cpp:257
+#, fuzzy
 msgid "Places"
 msgstr "Plaatsen"
 
-#: src/scope/query.cpp:114
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
+#, fuzzy
+msgid "Places Scope"
+msgstr "Plaatsen"
+
+#: src/scope/query.cpp:126
 msgid "Plumber"
 msgstr "Loodgieter"
 
-#: src/scope/query.cpp:115
+#: src/scope/query.cpp:127
 msgid "Police"
 msgstr "Politie"
 
-#: src/scope/query.cpp:116
+#: src/scope/query.cpp:128
 msgid "Post Office"
 msgstr "Postkantoor"
 
-#: src/scope/query.cpp:176
+#: src/scope/query.cpp:184
 msgid "RV Park"
 msgstr "Camperpark"
 
-#: src/scope/query.cpp:117
+#: data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
+msgid "Radius"
+msgstr "Straal"
+
+#: src/scope/query.cpp:129
 msgid "Real Estate Agency"
 msgstr "Makelaar"
 
-#: src/scope/query.cpp:195
+#: src/scope/query.cpp:201
 msgid "Restaurant"
 msgstr "Restaurant"
 
-#: src/scope/query.cpp:118
+#: src/scope/query.cpp:130
 msgid "Roofing Contractor"
 msgstr "Dakwerker"
 
@@ -381,35 +395,35 @@ msgstr "Dakwerker"
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: src/scope/query.cpp:119
+#: src/scope/query.cpp:131
 msgid "School"
 msgstr "School"
 
-#: src/scope/query.cpp:170
+#: src/scope/query.cpp:179
 msgid "Shoe Store"
 msgstr "Schoenwinkel"
 
-#: src/scope/query.cpp:140
+#: src/scope/query.cpp:151
 msgid "Shopping Mall"
 msgstr "Winkelcenter"
 
-#: src/scope/query.cpp:141
+#: src/scope/query.cpp:152
 msgid "Spa"
 msgstr "Kuuroord"
 
-#: src/scope/query.cpp:142
+#: src/scope/query.cpp:153
 msgid "Stadium"
 msgstr "Station"
 
-#: src/scope/query.cpp:120
+#: src/scope/query.cpp:132
 msgid "Storage"
 msgstr "Opslag"
 
-#: src/scope/query.cpp:288
+#: src/scope/query.cpp:295
 msgid "Store"
 msgstr "Winkel"
 
-#: src/scope/query.cpp:185
+#: src/scope/query.cpp:192
 msgid "Subway Station"
 msgstr "Metrostation"
 
@@ -417,11 +431,11 @@ msgstr "Metrostation"
 msgid "Sunday"
 msgstr "Zondag"
 
-#: src/scope/query.cpp:186
+#: src/scope/query.cpp:193
 msgid "Taxi Stand"
 msgstr "Taxistandplaats"
 
-#: src/scope/preview.cpp:156
+#: src/scope/preview.cpp:98
 msgid "Tel:"
 msgstr "Tel.:"
 
@@ -429,15 +443,15 @@ msgstr "Tel.:"
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: src/scope/query.cpp:187
+#: src/scope/query.cpp:194
 msgid "Train Station"
 msgstr "Treinstation"
 
-#: src/scope/query.cpp:299
+#: src/scope/query.cpp:306
 msgid "Transport"
 msgstr "Vervoer"
 
-#: src/scope/query.cpp:121
+#: src/scope/query.cpp:133
 msgid "Travel Agency"
 msgstr "Reisbureau"
 
@@ -445,15 +459,15 @@ msgstr "Reisbureau"
 msgid "Tuesday"
 msgstr "Dinsdag"
 
-#: src/scope/query.cpp:122
+#: src/scope/query.cpp:134
 msgid "University"
 msgstr "Universiteit"
 
-#: src/scope/query.cpp:204
+#: src/scope/query.cpp:209
 msgid "Veterinary Care"
 msgstr "Veterinaire Zorg"
 
-#: src/scope/preview.cpp:121
+#: src/scope/preview.cpp:117
 msgid "Website"
 msgstr "Website"
 
@@ -461,22 +475,25 @@ msgstr "Website"
 msgid "Wednesday"
 msgstr "Woensdag"
 
-#: src/scope/query.cpp:143
+#: src/scope/query.cpp:154
 msgid "Zoo"
 msgstr "Dierentuin"
+
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:3
+msgid "location google Places"
+msgstr "locatie google Places"
 
 #: src/scope/preview.cpp:89
 msgid "no"
 msgstr "nee"
 
-#: src/scope/query.cpp:151
+#: src/scope/query.cpp:161
 msgid "synagogue"
 msgstr "synagoge"
-
-#: src/scope/preview.cpp:103
-msgid "unknown"
-msgstr "onbekend"
 
 #: src/scope/preview.cpp:89
 msgid "yes"
 msgstr "ja"
+
+#~ msgid "unknown"
+#~ msgstr "onbekend"
