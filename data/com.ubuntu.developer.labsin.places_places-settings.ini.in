@@ -1,0 +1,4 @@
+[radius]
+type=number
+defaultValue=5000
+_displayName=Radius

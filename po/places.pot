@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-18 19:01+0100\n"
+"POT-Creation-Date: 2014-11-20 21:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,403 +45,411 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: src/scope/query.cpp:92
-msgid "Art gallery"
-msgstr ""
-
-#: src/scope/query.cpp:93
-msgid "Atm"
-msgstr ""
-
-#: src/scope/query.cpp:94
-msgid "Beauty Salon"
-msgstr ""
-
-#: src/scope/query.cpp:95
-msgid "Car Rental"
-msgstr ""
-
-#: src/scope/query.cpp:96
-msgid "Car Repair"
-msgstr ""
-
-#: src/scope/query.cpp:97
-msgid "Car Wash"
-msgstr ""
-
-#: src/scope/query.cpp:98
-msgid "Cemetry"
-msgstr ""
-
-#: src/scope/query.cpp:99
-msgid "City Hall"
-msgstr ""
-
-#: src/scope/query.cpp:100
-msgid "Courthouse"
-msgstr ""
-
-#: src/scope/query.cpp:101
-msgid "Electrician"
-msgstr ""
-
-#: src/scope/query.cpp:102
-msgid "Embassy"
-msgstr ""
-
-#: src/scope/query.cpp:103
-msgid "Fire Station"
+#: src/scope/scope.cpp:23 src/scope/preview.cpp:110
+msgid "Call"
 msgstr ""
 
 #: src/scope/query.cpp:104
-msgid "Florist"
+msgid "Art gallery"
 msgstr ""
 
 #: src/scope/query.cpp:105
-msgid "Funeral Home"
+msgid "Atm"
 msgstr ""
 
 #: src/scope/query.cpp:106
-msgid "General Contractor"
+msgid "Beauty Salon"
 msgstr ""
 
 #: src/scope/query.cpp:107
-msgid "Hair Care"
+msgid "Car Rental"
 msgstr ""
 
 #: src/scope/query.cpp:108
-msgid "Hospital"
+msgid "Car Repair"
 msgstr ""
 
 #: src/scope/query.cpp:109
-msgid "Laundry"
+msgid "Car Wash"
 msgstr ""
 
 #: src/scope/query.cpp:110
-msgid "Local Government Office"
+msgid "Cemetry"
 msgstr ""
 
 #: src/scope/query.cpp:111
-msgid "Locksmith"
+msgid "City Hall"
 msgstr ""
 
 #: src/scope/query.cpp:112
-msgid "Moving Company"
+msgid "Courthouse"
 msgstr ""
 
 #: src/scope/query.cpp:113
-msgid "Painter"
+msgid "Electrician"
 msgstr ""
 
 #: src/scope/query.cpp:114
-msgid "Plumber"
+msgid "Embassy"
 msgstr ""
 
 #: src/scope/query.cpp:115
-msgid "Police"
+msgid "Fire Station"
 msgstr ""
 
 #: src/scope/query.cpp:116
-msgid "Post Office"
+msgid "Florist"
 msgstr ""
 
 #: src/scope/query.cpp:117
-msgid "Real Estate Agency"
+msgid "Funeral Home"
 msgstr ""
 
 #: src/scope/query.cpp:118
-msgid "Roofing Contractor"
+msgid "General Contractor"
 msgstr ""
 
 #: src/scope/query.cpp:119
-msgid "School"
+msgid "Hair Care"
 msgstr ""
 
 #: src/scope/query.cpp:120
-msgid "Storage"
+msgid "Hospital"
 msgstr ""
 
 #: src/scope/query.cpp:121
-msgid "Travel Agency"
+msgid "Laundry"
 msgstr ""
 
 #: src/scope/query.cpp:122
-msgid "University"
+msgid "Local Government Office"
+msgstr ""
+
+#: src/scope/query.cpp:123
+msgid "Locksmith"
+msgstr ""
+
+#: src/scope/query.cpp:124
+msgid "Moving Company"
+msgstr ""
+
+#: src/scope/query.cpp:125
+msgid "Painter"
+msgstr ""
+
+#: src/scope/query.cpp:126
+msgid "Plumber"
 msgstr ""
 
 #: src/scope/query.cpp:127
-msgid "Amusement Park"
+msgid "Police"
 msgstr ""
 
 #: src/scope/query.cpp:128
-msgid "Aquarium"
+msgid "Post Office"
 msgstr ""
 
 #: src/scope/query.cpp:129
-msgid "Bar"
+msgid "Real Estate Agency"
 msgstr ""
 
 #: src/scope/query.cpp:130
-msgid "Bowling Alley"
+msgid "Roofing Contractor"
 msgstr ""
 
 #: src/scope/query.cpp:131
-msgid "Cafe"
+msgid "School"
 msgstr ""
 
 #: src/scope/query.cpp:132
-msgid "Casino"
+msgid "Storage"
 msgstr ""
 
 #: src/scope/query.cpp:133
-msgid "Gym"
+msgid "Travel Agency"
 msgstr ""
 
 #: src/scope/query.cpp:134
-msgid "Library"
-msgstr ""
-
-#: src/scope/query.cpp:135
-msgid "Movie Rental"
-msgstr ""
-
-#: src/scope/query.cpp:136
-msgid "Movie Theater"
-msgstr ""
-
-#: src/scope/query.cpp:137
-msgid "Museum"
+msgid "University"
 msgstr ""
 
 #: src/scope/query.cpp:138
-msgid "Night Club"
+msgid "Amusement Park"
 msgstr ""
 
 #: src/scope/query.cpp:139
-msgid "Park"
+msgid "Aquarium"
 msgstr ""
 
 #: src/scope/query.cpp:140
-msgid "Shopping Mall"
+msgid "Bar"
 msgstr ""
 
 #: src/scope/query.cpp:141
-msgid "Spa"
+msgid "Bowling Alley"
 msgstr ""
 
 #: src/scope/query.cpp:142
-msgid "Stadium"
+msgid "Cafe"
 msgstr ""
 
 #: src/scope/query.cpp:143
-msgid "Zoo"
+msgid "Casino"
+msgstr ""
+
+#: src/scope/query.cpp:144
+msgid "Gym"
+msgstr ""
+
+#: src/scope/query.cpp:145
+msgid "Library"
+msgstr ""
+
+#: src/scope/query.cpp:146
+msgid "Movie Rental"
+msgstr ""
+
+#: src/scope/query.cpp:147
+msgid "Movie Theater"
 msgstr ""
 
 #: src/scope/query.cpp:148
-msgid "Church"
+msgid "Museum"
 msgstr ""
 
 #: src/scope/query.cpp:149
-msgid "Hindu Temple"
+msgid "Night Club"
 msgstr ""
 
 #: src/scope/query.cpp:150
-msgid "Mosque"
+msgid "Park"
 msgstr ""
 
 #: src/scope/query.cpp:151
-msgid "synagogue"
+msgid "Shopping Mall"
 msgstr ""
 
-#: src/scope/query.cpp:156
-msgid "Bicycle Store"
+#: src/scope/query.cpp:152
+msgid "Spa"
 msgstr ""
 
-#: src/scope/query.cpp:157
-msgid "Book Store"
+#: src/scope/query.cpp:153
+msgid "Stadium"
+msgstr ""
+
+#: src/scope/query.cpp:154
+msgid "Zoo"
 msgstr ""
 
 #: src/scope/query.cpp:158
-msgid "Car Dealer"
+msgid "Church"
 msgstr ""
 
 #: src/scope/query.cpp:159
-msgid "Clothing Store"
+msgid "Hindu Temple"
 msgstr ""
 
 #: src/scope/query.cpp:160
-msgid "Convenience Store"
+msgid "Mosque"
 msgstr ""
 
 #: src/scope/query.cpp:161
-msgid "Department Store"
-msgstr ""
-
-#: src/scope/query.cpp:162
-msgid "Electronics Store"
-msgstr ""
-
-#: src/scope/query.cpp:163
-msgid "Furniture Store"
-msgstr ""
-
-#: src/scope/query.cpp:164
-msgid "Grocery or Supermarket"
+msgid "synagogue"
 msgstr ""
 
 #: src/scope/query.cpp:165
-msgid "Hardware Store"
+msgid "Bicycle Store"
 msgstr ""
 
 #: src/scope/query.cpp:166
-msgid "Home Goods Store"
+msgid "Book Store"
 msgstr ""
 
 #: src/scope/query.cpp:167
-msgid "Jewelry Store"
+msgid "Car Dealer"
 msgstr ""
 
 #: src/scope/query.cpp:168
-msgid "Liquor Store"
+msgid "Clothing Store"
 msgstr ""
 
 #: src/scope/query.cpp:169
-msgid "Pet Store"
+msgid "Convenience Store"
 msgstr ""
 
 #: src/scope/query.cpp:170
-msgid "Shoe Store"
+msgid "Department Store"
+msgstr ""
+
+#: src/scope/query.cpp:171
+msgid "Electronics Store"
+msgstr ""
+
+#: src/scope/query.cpp:172
+msgid "Furniture Store"
+msgstr ""
+
+#: src/scope/query.cpp:173
+msgid "Grocery or Supermarket"
+msgstr ""
+
+#: src/scope/query.cpp:174
+msgid "Hardware Store"
 msgstr ""
 
 #: src/scope/query.cpp:175
-msgid "Campground"
+msgid "Home Goods Store"
 msgstr ""
 
 #: src/scope/query.cpp:176
-msgid "RV Park"
+msgid "Jewelry Store"
 msgstr ""
 
-#: src/scope/query.cpp:181
-msgid "Airport"
+#: src/scope/query.cpp:177
+msgid "Liquor Store"
 msgstr ""
 
-#: src/scope/query.cpp:182
-msgid "Bus Station"
+#: src/scope/query.cpp:178
+msgid "Pet Store"
+msgstr ""
+
+#: src/scope/query.cpp:179
+msgid "Shoe Store"
 msgstr ""
 
 #: src/scope/query.cpp:183
-msgid "Gas Station"
+msgid "Campground"
 msgstr ""
 
 #: src/scope/query.cpp:184
+msgid "RV Park"
+msgstr ""
+
+#: src/scope/query.cpp:188
+msgid "Airport"
+msgstr ""
+
+#: src/scope/query.cpp:189
+msgid "Bus Station"
+msgstr ""
+
+#: src/scope/query.cpp:190
+msgid "Gas Station"
+msgstr ""
+
+#: src/scope/query.cpp:191
 msgid "Parking"
 msgstr ""
 
-#: src/scope/query.cpp:185
+#: src/scope/query.cpp:192
 msgid "Subway Station"
 msgstr ""
 
-#: src/scope/query.cpp:186
+#: src/scope/query.cpp:193
 msgid "Taxi Stand"
 msgstr ""
 
-#: src/scope/query.cpp:187
+#: src/scope/query.cpp:194
 msgid "Train Station"
 msgstr ""
 
-#: src/scope/query.cpp:192
+#: src/scope/query.cpp:198
 msgid "Bakery"
 msgstr ""
 
-#: src/scope/query.cpp:193
+#: src/scope/query.cpp:199
 msgid "Meal Delivery"
 msgstr ""
 
-#: src/scope/query.cpp:194
+#: src/scope/query.cpp:200
 msgid "Meal Takeaway"
 msgstr ""
 
-#: src/scope/query.cpp:195
+#: src/scope/query.cpp:201
 msgid "Restaurant"
 msgstr ""
 
-#: src/scope/query.cpp:200
+#: src/scope/query.cpp:205
 msgid "Doctor"
 msgstr ""
 
-#: src/scope/query.cpp:201
+#: src/scope/query.cpp:206
 msgid "Dentist"
 msgstr ""
 
-#: src/scope/query.cpp:202
+#: src/scope/query.cpp:207
 msgid "Pharmacy"
 msgstr ""
 
-#: src/scope/query.cpp:203
+#: src/scope/query.cpp:208
 msgid "Physiotherapist"
 msgstr ""
 
-#: src/scope/query.cpp:204
+#: src/scope/query.cpp:209
 msgid "Veterinary Care"
 msgstr ""
 
-#: src/scope/query.cpp:209
+#: src/scope/query.cpp:213
 msgid "Bank"
 msgstr ""
 
-#: src/scope/query.cpp:210
+#: src/scope/query.cpp:214
 msgid "Lawyer"
 msgstr ""
 
-#: src/scope/query.cpp:211
+#: src/scope/query.cpp:215
 msgid "Insurance Agency"
 msgstr ""
 
-#: src/scope/query.cpp:238 src/scope/query.cpp:242
+#: src/scope/query.cpp:244 src/scope/query.cpp:248
 msgid "Nearby"
 msgstr ""
 
-#: src/scope/query.cpp:250
+#: src/scope/query.cpp:257
 msgid "Places"
 msgstr ""
 
-#: src/scope/query.cpp:252
+#: src/scope/query.cpp:259
 msgid "Establishments"
 msgstr ""
 
-#: src/scope/query.cpp:255
+#: src/scope/query.cpp:262
 msgid "Food"
 msgstr ""
 
-#: src/scope/query.cpp:266
+#: src/scope/query.cpp:273
 msgid "Fun"
 msgstr ""
 
-#: src/scope/query.cpp:277
+#: src/scope/query.cpp:284
 msgid "Lodging"
 msgstr ""
 
-#: src/scope/query.cpp:288
+#: src/scope/query.cpp:295
 msgid "Store"
 msgstr ""
 
-#: src/scope/query.cpp:299
+#: src/scope/query.cpp:306
 msgid "Transport"
 msgstr ""
 
-#: src/scope/query.cpp:310
+#: src/scope/query.cpp:317
 msgid "Place of Worship"
 msgstr ""
 
-#: src/scope/query.cpp:329
+#: src/scope/query.cpp:336
 msgid "Finance"
 msgstr ""
 
-#: src/scope/query.cpp:340
+#: src/scope/query.cpp:347
 msgid "Health"
 msgstr ""
 
-#: src/scope/preview.cpp:85
+#: src/scope/preview.cpp:81
+msgid "Address:"
+msgstr ""
+
+#: src/scope/preview.cpp:87
 msgid "Now open:"
 msgstr ""
 
@@ -453,30 +461,34 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: src/scope/preview.cpp:91
-msgid "Opening Hours:"
+#: src/scope/preview.cpp:98
+msgid "Tel:"
 msgstr ""
 
-#: src/scope/preview.cpp:103
-msgid "unknown"
-msgstr ""
-
-#: src/scope/preview.cpp:114
-msgid "Call"
-msgstr ""
-
-#: src/scope/preview.cpp:121
+#: src/scope/preview.cpp:117
 msgid "Website"
 msgstr ""
 
-#: src/scope/preview.cpp:147
+#: src/scope/preview.cpp:143
 msgid "Navigate"
 msgstr ""
 
-#: src/scope/preview.cpp:154
-msgid "Address:"
+#: src/scope/preview.cpp:171
+msgid "Opening Hours:"
 msgstr ""
 
-#: src/scope/preview.cpp:156
-msgid "Tel:"
+#: data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
+msgid "Radius"
+msgstr ""
+
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
+msgid "Places Scope"
+msgstr ""
+
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:2
+msgid "A scope for looking up places nearby"
+msgstr ""
+
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:3
+msgid "location google Places"
 msgstr ""
