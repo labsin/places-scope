@@ -100,7 +100,9 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
             col1.push_back("number");
         }
 
-        if(!(pd.phoneNr.empty() && pd.website.empty()) && pd.address.empty()){
+        cerr << "first adding button";
+        if(!pd.phoneNr.empty() || !pd.website.empty() || !pd.address.empty()) {
+            cerr << "adding buttons";
             sc::VariantBuilder builder;
             if(!pd.phoneNr.empty()){
                 string pn = pd.phoneNr;

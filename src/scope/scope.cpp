@@ -20,8 +20,6 @@ void Scope::start(string const&) {
             + "/../share/locale/";
     bindtextdomain(GETTEXT_PACKAGE, translation_directory.c_str());
 
-    cerr << _("Call");
-
     config_->directory = ScopeBase::scope_directory();
 
     // Under test we set a different API root
