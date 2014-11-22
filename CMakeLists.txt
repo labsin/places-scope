@@ -55,10 +55,14 @@ set(CMAKE_INSTALL_PREFIX /)
 set(SCOPE_INSTALL_DIR "/places")
 set(GETTEXT_PACKAGE "places")
 
+file(STRINGS places.secret SECRET_STRINGS)
+list(GET SECRET_STRINGS 0 API_KEY)
+
 # If we need to refer to the scope's name or package in code, these definitions will help
 add_definitions(-DPACKAGE_NAME="com.ubuntu.developer.labsin.places")
 add_definitions(-DSCOPE_NAME="com.ubuntu.developer.labsin.places_places")
 add_definitions(-DGETTEXT_PACKAGE="${GETTEXT_PACKAGE}")
+add_definitions(-DAPI_KEY="${API_KEY}")
 
 #This command figures out the target architecture and puts it into the manifest file
 execute_process(

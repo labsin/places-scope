@@ -24,7 +24,7 @@ struct Config {
     /*
      * The API key
      */
-    std::string id { "AIzaSyDmQMypa8rTZYBmfSqnxU7f29I-llfCQqk" };
+    std::string id { API_KEY };
 
 };
 
