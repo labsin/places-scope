@@ -53,6 +53,7 @@ install(
 install(
   FILES
     "icon.png"
+    "icon_512x512.png"
     "logo.png"
     "places.jpg"
     "screenshot.png"

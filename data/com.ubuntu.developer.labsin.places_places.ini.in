@@ -1,9 +1,9 @@
 [ScopeConfig]
-_DisplayName=Places Scope
+_DisplayName=Places
 _Description=A scope for looking up places nearby
 Art=screenshot.png
 Author=Sam Segers
-Icon=icon.png
+Icon=icon_512x512.png
 LocationDataNeeded=true
 ResultsTtlType=Medium
 _SearchHint=location google Places
