@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-20 21:53+0100\n"
+"POT-Creation-Date: 2014-12-01 21:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,10 +43,6 @@ msgstr ""
 
 #: src/api/client.cpp:35
 msgid "Saturday"
-msgstr ""
-
-#: src/scope/scope.cpp:23 src/scope/preview.cpp:110
-msgid "Call"
 msgstr ""
 
 #: src/scope/query.cpp:104
@@ -406,6 +402,7 @@ msgid "Nearby"
 msgstr ""
 
 #: src/scope/query.cpp:257
+#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
 msgid "Places"
 msgstr ""
 
@@ -446,43 +443,35 @@ msgid "Health"
 msgstr ""
 
 #: src/scope/preview.cpp:81
-msgid "Address:"
+msgid "Address"
 msgstr ""
 
-#: src/scope/preview.cpp:87
-msgid "Now open:"
+#: src/scope/preview.cpp:88
+msgid "Open"
 msgstr ""
 
-#: src/scope/preview.cpp:89
-msgid "yes"
+#: src/scope/preview.cpp:88
+msgid "Closed"
 msgstr ""
 
-#: src/scope/preview.cpp:89
-msgid "no"
+#: src/scope/preview.cpp:95
+msgid "Tel"
 msgstr ""
 
-#: src/scope/preview.cpp:98
-msgid "Tel:"
+#: src/scope/preview.cpp:107
+msgid "Call"
 msgstr ""
 
-#: src/scope/preview.cpp:117
+#: src/scope/preview.cpp:114
 msgid "Website"
 msgstr ""
 
-#: src/scope/preview.cpp:143
+#: src/scope/preview.cpp:140
 msgid "Navigate"
 msgstr ""
 
-#: src/scope/preview.cpp:171
-msgid "Opening Hours:"
-msgstr ""
-
-#: data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
-msgid "Radius"
-msgstr ""
-
-#: data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
-msgid "Places Scope"
+#: src/scope/preview.cpp:166
+msgid "Opening Hours"
 msgstr ""
 
 #: data/com.ubuntu.developer.labsin.places_places.ini.in.h:2
@@ -490,5 +479,12 @@ msgid "A scope for looking up places nearby"
 msgstr ""
 
 #: data/com.ubuntu.developer.labsin.places_places.ini.in.h:3
-msgid "location google Places"
+msgid ""
+"location google Places scope scopes food where look nearby yelp foursquare "
+"sights sightseeing POI point of interest restaurant restaurants city travel "
+"travelling tourist information Sam Segers local business"
+msgstr ""
+
+#: data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
+msgid "Radius"
 msgstr ""

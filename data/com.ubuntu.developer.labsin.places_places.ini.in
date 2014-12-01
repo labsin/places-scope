@@ -6,7 +6,7 @@ Author=Sam Segers
 Icon=icon_512x512.png
 LocationDataNeeded=true
 ResultsTtlType=Medium
-_SearchHint=location google Places
+_SearchHint=location google Places scope scopes food where look nearby yelp foursquare sights sightseeing POI point of interest restaurant restaurants city travel travelling tourist information Sam Segers local business
 
 [Appearance]
 CategoryHeaderBackground=color:///white
