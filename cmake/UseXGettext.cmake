@@ -48,7 +48,7 @@ endmacro(add_translations_directory)
 
 macro(add_translations_catalog)
     set(_oneValueArgs GETTEXT_PACKAGE COPYRIGHT_HOLDER)
-    set(_multiValueArgs SOURCE_DIRECTORIES)
+    set(_multiValueArgs SOURCE_DIRECTORIES EXTRA_SOURCES)
 
     cmake_parse_arguments(_ARG "" "${_oneValueArgs}" "${_multiValueArgs}" ${ARGN})
 
@@ -67,7 +67,7 @@ macro(add_translations_catalog)
         DEPENDS ${_POT_FILE}
     )
 
-    set(_SOURCES "")
+    set(_SOURCES ${EXTRA_SOURCES})
 
     foreach(DIR ${_ARG_SOURCE_DIRECTORIES})
         file(
