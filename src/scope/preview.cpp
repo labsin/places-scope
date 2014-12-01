@@ -78,31 +78,26 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         // Define the summary section
         if(!pd.address.empty()){
             sc::PreviewWidget addrWg("address", "text");
-            addrWg.add_attribute_value("text", sc::Variant(std::string(_("Address:")) + " " + pd.address));
+            addrWg.add_attribute_value("text", sc::Variant("<b>" + std::string(_("Address")) + "</b><br>" + pd.address));
             toPush.push_back(addrWg);
             col1.push_back("address");
         }
 
         if(pd.openingHours.valid) {
-            std::string openNowString = _("Now open:");
-            openNowString += " ";
-            openNowString.append(pd.openingHours.openNow?_("yes"):_("no"));
             sc::PreviewWidget onWg("openNow", "text");
-            onWg.add_attribute_value("text", sc::Variant(openNowString));
+            onWg.add_attribute_value("text", sc::Variant(pd.openingHours.openNow?"<font color=\"green\">" + std::string(_("Open")) + "</font>" : "<font color=\"red\">" + std::string(_("Closed")) + "</font>"));
             toPush.push_back(onWg);
             col1.push_back("openNow");
         }
 
         if(!pd.phoneNr.empty()){
             sc::PreviewWidget nrWg("number", "text");
-            nrWg.add_attribute_value("text", sc::Variant(std::string(_("Tel:")) + " " + pd.phoneNr));
+            nrWg.add_attribute_value("text", sc::Variant("<b>" + std::string(_("Tel")) + "</b><br>" + pd.phoneNr));
             toPush.push_back(nrWg);
             col1.push_back("number");
         }
 
-        cerr << "first adding button";
         if(!pd.phoneNr.empty() || !pd.website.empty() || !pd.address.empty()) {
-            cerr << "adding buttons";
             sc::VariantBuilder builder;
             if(!pd.phoneNr.empty()){
                 string pn = pd.phoneNr;
@@ -168,18 +163,18 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
         }
 
         if(pd.openingHours.valid) {
-            std::string openingHoursString("");
+            std::string openingHoursString("<b>" + string(_("Opening Hours")) + "</b><ul>");
             if(pd.openingHours.hasWeekdayText) {
-                openingHoursString.append(_("Opening Hours:"));
-                for(auto day : pd.openingHours.periodsStrings) {
-                    openingHoursString.append("\n"+day);
+                for(auto dayText : pd.openingHours.periodsStrings) {
+                    openingHoursString.append("<li>"+dayText+"</li>");
                 }
             }
             else if(!pd.openingHours.periods.empty()) {
                 for(Client::OpeningsDay day : pd.openingHours.periods) {
-                    openingHoursString.append("\n"+Client::dayOfWeek(day.day)+": "+std::to_string(day.openHour)+":"+std::to_string(day.openMinutes)+"-"+std::to_string(day.closeHour)+":"+std::to_string(day.closeMinutes));
+                    openingHoursString.append("<li>"+Client::dayOfWeek(day.day)+": "+std::to_string(day.openHour)+":"+std::to_string(day.openMinutes)+"-"+std::to_string(day.closeHour)+":"+std::to_string(day.closeMinutes)+"</li>");
                 }
             }
+            openingHoursString.append("</ul>");
             sc::PreviewWidget ohWg("openinghours", "text");
             ohWg.add_attribute_value("text", sc::Variant(openingHoursString));
             toPush.push_back(ohWg);
