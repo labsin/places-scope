@@ -1,6 +1,14 @@
 project(places CXX)
 cmake_minimum_required(VERSION 2.8.10)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}")
+include("QtCreatorResources")
+
+qtcreator_add_project_resources(
+    "places.secret"
+    "readme.txt"
+    "manifest.json.in"
+    "places.apparmor"
+)
 
 # We require g++ 4.9, to avoid ABI breakage with earlier version.
 set(cxx_version_required 4.9)
@@ -77,24 +85,7 @@ configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION "/")
 install(FILES "places.apparmor" DESTINATION "/")
 
-# Make this file show up in QtCreator
-add_custom_target(hidden_files
-  ALL
-  SOURCES
-    manifest.json.in
-    "places.apparmor"
-)
-
 # Add our main directories
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(po)
-
-# Set up the tests
-#enable_testing()
-#add_subdirectory(tests)
-#add_custom_target(
-#  check
-#  ${CMAKE_CTEST_COMMAND} --force-new-ctest-process --output-on-failure
-#)
-

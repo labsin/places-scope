@@ -1,5 +1,11 @@
 include(UseXGettext)
 
+file(GLOB PO_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.po
+)
+
+qtcreator_add_project_resources(${PO_FILES})
+
 add_translations_directory(${GETTEXT_PACKAGE})
 
 add_translations_catalog(

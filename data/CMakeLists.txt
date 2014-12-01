@@ -42,6 +42,18 @@ configure_file(
     COPYONLY
 )
 
+set(FILES_TO_SHOW
+    "com.ubuntu.developer.labsin.places_places.ini.in"
+    "com.ubuntu.developer.labsin.places_places-settings.ini.in"
+    "icon.png"
+    "icon_512x512.png"
+    "logo.png"
+    "places.jpg"
+    "screenshot.png"
+)
+
+qtcreator_add_project_resources(${FILES_TO_SHOW})
+
 # Install the scope ini file
 install(
   FILES ${CMAKE_BINARY_DIR}/src/${PLACES_INI_TARGET}
