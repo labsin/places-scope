@@ -1,6 +1,6 @@
 # Macro to include arbitrary files in the QtCreator tree
 #  when importing cmake
-macro( qtcreator_add_project_resources resources )
+macro( qtcreator_add_project_resources )
     set(projectName "_QT_RESOURCES_UNIQUE_COUNTER_${PROJECT_NAME}")
     get_property(currentCounter GLOBAL PROPERTY "${projectName}")
     if(NOT currentCounter)
