@@ -1,5 +1,11 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O0 -g")
 
+execute_process(COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
+    OUTPUT_VARIABLE BUILD_ARCH_TEMP
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+set(BUILD_ARCH_TRIPLET "${BUILD_ARCH_TEMP}" CACHE PATH "Debian multiarch triplet")
+
 # The sources to build the scope
 set(SCOPE_SOURCES
   api/client.cpp
@@ -52,6 +58,6 @@ set_target_properties(
 # Install the scope shared library
 install(
   TARGETS scope
-  LIBRARY DESTINATION ${SCOPE_INSTALL_DIR}
+  LIBRARY DESTINATION ${SCOPE_INSTALL_DIR}/${BUILD_ARCH_TRIPLET}
 )
 
