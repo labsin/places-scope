@@ -12,6 +12,7 @@ set(SCOPE_SOURCES
   scope/preview.cpp
   scope/query.cpp
   scope/scope.cpp
+  utils/distance.c
 )
 
 # Find all the headers

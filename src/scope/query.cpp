@@ -1,4 +1,5 @@
 #include <boost/algorithm/string/trim.hpp>
+#include <boost/format.hpp>
 
 #include <unity/scopes/Annotation.h>
 #include <unity/scopes/CategorisedResult.h>
@@ -9,13 +10,15 @@
 #include <unity/scopes/Variant.h>
 #include <unity/scopes/Department.h>
 #include <unity/scopes/ScopeBase.h>
+#include <unity/scopes/VariantBuilder.h>
 
-#include <scope/localization.h>
 #include <scope/query.h>
 
 #include <iomanip>
 #include <sstream>
 #include <unordered_map>
+
+#include <utils/distance.h>
 
 namespace sc = unity::scopes;
 namespace alg = boost::algorithm;
@@ -27,199 +30,77 @@ using namespace scope;
 const static string LOCATION_TEMPLATE =
         R"(
 {
-        "schema-version": 1,
-        "template": {
+"schema-version": 1,
+    "template": {
         "category-layout": "grid",
         "card-size": "medium",
         "overlay": true,
         "card-background": "gradient:///#666666/#777777"
-        },
-        "components": {
+    },
+    "components": {
         "title": "name",
         "art" : {
         "field": "art"
         },
-        "mascot" : {
-        "field": "icon"
-        },
-        "subtitle": "rating"
+        "attributes": {
+            "field": "attributes",
+            "max-count": 3
         }
-        }
-        )";
+    }
+}
+)";
 
 const static string NEARBY_TEMPLATE =
         R"(
 {
-        "schema-version": 1,
-        "template": {
+    "schema-version": 1,
+    "template": {
         "category-layout": "horizontal-list",
         "card-size": "medium",
         "overlay": true,
         "card-background": "gradient:///#666666/#777777"
-        },
-        "components": {
+    },
+    "components": {
         "title": "name",
         "art" : {
         "field": "art"
         },
-        "subtitle": "rating"
+        "attributes": {
+            "field": "attributes",
+            "max-count": 3
         }
-        }
-        )";
+    }
+}
+)";
 
 const static string NEARBY_TEMPLATE_SOLO =
         R"(
 {
-        "schema-version": 1,
-        "template": {
+    "schema-version": 1,
+    "template": {
         "category-layout": "grid",
         "card-size": "medium",
         "overlay": true,
         "card-background": "gradient:///#666666/#777777"
-        },
-        "components": {
+    },
+    "components": {
         "title": "name",
         "art" : {
         "field": "art"
         },
-        "subtitle": "rating"
+        "attributes": {
+            "field": "attributes",
+            "max-count": 2
         }
-        }
-        )";
-
-class CatTypes {
-public:
-    std::map<std::string, std::string> TYPES_EST;
-    std::map<std::string, std::string> TYPES_EST_FUN;
-    std::map<std::string, std::string> TYPES_EST_WORSH;
-    std::map<std::string, std::string> TYPES_EST_STORE;
-    std::map<std::string, std::string> TYPES_EST_LODGING;
-    std::map<std::string, std::string> TYPES_EST_TRANSPORT;
-    std::map<std::string, std::string> TYPES_EST_FOOD;
-    std::map<std::string, std::string> TYPES_HEALTH;
-    std::map<std::string, std::string> TYPES_FINANCE;
-    CatTypes() {
-        TYPES_EST = {
-            {"All", "establishment"},
-            {_("Art gallery"), "art_gallery"},
-            {_("Atm"), "atm"},
-            {_("Beauty Salon"), "beauty_salon"},
-            {_("Car Rental"), "car_rental"},
-            {_("Car Repair"), "car_repair"},
-            {_("Car Wash"), "car_wash"},
-            {_("Cemetry"), "cemetery"},
-            {_("City Hall"), "city_hall"},
-            {_("Courthouse"), "courthouse"},
-            {_("Electrician"), "electrician"},
-            {_("Embassy"), "embassy"},
-            {_("Fire Station"), "fire_station"},
-            {_("Florist"), "florist"},
-            {_("Funeral Home"), "funeral_home"},
-            {_("General Contractor"), "general_contractor"},
-            {_("Hair Care"), "hair_care"},
-            {_("Hospital"), "hospital"},
-            {_("Laundry"), "laundry"},
-            {_("Local Government Office"), "local_government_office"},
-            {_("Locksmith"), "locksmith"},
-            {_("Moving Company"), "moving_company"},
-            {_("Painter"), "painter"},
-            {_("Plumber"), "plumber"},
-            {_("Police"), "police"},
-            {_("Post Office"), "post_office"},
-            {_("Real Estate Agency"), "real_estate_agency"},
-            {_("Roofing Contractor"), "roofing_contractor"},
-            {_("School"), "school"},
-            {_("Storage"), "storage"},
-            {_("Travel Agency"), "travel_agency"},
-            {_("University"), "university"}
-        };
-        TYPES_EST_FUN = {
-            {"All", "amusement_park|aquarium|bar|bowling_alley|cafe|casino|gym|library|movie_rental|movie_theater|museum|night_club|park|shopping_mall|spa|stadium|zoo"},
-            {_("Amusement Park"), "amusement_park"},
-            {_("Aquarium"), "aquarium"},
-            {_("Bar"), "bar"},
-            {_("Bowling Alley"), "bowling_alley"},
-            {_("Cafe"), "cafe"},
-            {_("Casino"), "casino"},
-            {_("Gym"), "gym"},
-            {_("Library"), "library"},
-            {_("Movie Rental"), "movie_rental"},
-            {_("Movie Theater"), "movie_theater"},
-            {_("Museum"), "museum"},
-            {_("Night Club"), "night_club"},
-            {_("Park"), "park"},
-            {_("Shopping Mall"), "shopping_mall"},
-            {_("Spa"), "spa"},
-            {_("Stadium"), "stadium"},
-            {_("Zoo"), "zoo"}
-        };
-        TYPES_EST_WORSH = {
-            {"All", "place_of_worship"},
-            {_("Church"), "church"},
-            {_("Hindu Temple"), "hindu_temple"},
-            {_("Mosque"), "mosque"},
-            {_("synagogue"), "synagogue"}
-        };
-        TYPES_EST_STORE = {
-            {"All", "store"},
-            {_("Bicycle Store"), "bicycle_store"},
-            {_("Book Store"), "book_store"},
-            {_("Car Dealer"), "car_dealer"},
-            {_("Clothing Store"), "clothing_store"},
-            {_("Convenience Store"), "convenience_store"},
-            {_("Department Store"), "department_store"},
-            {_("Electronics Store"), "electronics_store"},
-            {_("Furniture Store"), "furniture_store"},
-            {_("Grocery or Supermarket"), "grocery_or_supermarket"},
-            {_("Hardware Store"), "hardware_store"},
-            {_("Home Goods Store"), "home_goods_store"},
-            {_("Jewelry Store"), "jewelry_store"},
-            {_("Liquor Store"), "liquor_store"},
-            {_("Pet Store"), "pet_store"},
-            {_("Shoe Store"), "shoe_store"}
-        };
-        TYPES_EST_LODGING = {
-            {"All", "lodging"},
-            {_("Campground"), "campground"},
-            {_("RV Park"), "rv_park"}
-        };
-        TYPES_EST_TRANSPORT = {
-            {"All", "airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station"},
-            {_("Airport"), "airport"},
-            {_("Bus Station"), "bus_station"},
-            {_("Gas Station"), "gas_station"},
-            {_("Parking"), "parking"},
-            {_("Subway Station"), "subway_station"},
-            {_("Taxi Stand"), "taxi_stand"},
-            {_("Train Station"), "train_station"}
-        };
-        TYPES_EST_FOOD = {
-            {"All", "food"},
-            {_("Bakery"), "bakery"},
-            {_("Meal Delivery"), "meal_delivery"},
-            {_("Meal Takeaway"), "meal_takeaway"},
-            {_("Restaurant"), "restaurant"}
-        };
-        TYPES_HEALTH = {
-            {"All", "health"},
-            {_("Doctor"), "doctor"},
-            {_("Dentist"), "dentist"},
-            {_("Pharmacy"), "pharmacy"},
-            {_("Physiotherapist"), "physiotherapist"},
-            {_("Veterinary Care"), "veterinary_care"}
-        };
-        TYPES_FINANCE = {
-            {"All", "finance"},
-            {_("Bank"), "bank"},
-            {_("Lawyer"), "lawyer"},
-            {_("Insurance Agency"), "insurance_agency"}
-        };
     }
-};
+}
+)";
+
 
 Query::Query(const sc::CannedQuery &query, const sc::SearchMetadata &metadata,
              Config::Ptr config) :
     sc::SearchQueryBase(query, metadata), client_(config) {
+    constTypes.set();
 }
 
 void Query::cancelled() {
@@ -229,19 +110,55 @@ void Query::cancelled() {
 
 void Query::run(sc::SearchReplyProxy const& reply) {
     initScope();
+    std::exception_ptr eptr;
     try {
         // Start by getting information about the query
         const sc::CannedQuery &query(sc::SearchQueryBase::query());
+        auto metadata = sc::SearchQueryBase::search_metadata();
+
+        auto dep_id = query.department_id();
+        bool only_nearby = false;
 
         string query_string = alg::trim_copy(query.query_string());
-        if (query_string.empty() && !search_metadata().has_location()) {
+        if (query_string.empty() && !metadata.has_location()) {
             return;
+        }
+
+
+        if (metadata.is_aggregated())
+        {
+            auto keywords = metadata.aggregated_keywords();
+
+            if (keywords.find("food") != keywords.end())
+            {
+                dep_id = constTypes.TYPES_EST_FOOD.at("ALL");
+            }
+
+            if (keywords.find("drink") != keywords.end())
+            {
+                dep_id = constTypes.TYPES_EST_FUN.at("Bar");
+            }
+
+            if (keywords.find("poi") != keywords.end())
+            {
+                dep_id = "";
+            }
+
+            if (keywords.find("business") != keywords.end())
+            {
+                dep_id = constTypes.TYPES_EST.at("ALL");
+            }
+
+            if (keywords.find("nearby") != keywords.end())
+            {
+                only_nearby = true;
+            }
         }
 
         client_.setRadius(s_radius);
         sc::Category::SCPtr nearyby_cat;
         if(query_string.empty()) {
-            nearyby_cat = reply->register_category("nearbycarousel", _("Nearby"), "",
+            nearyby_cat = reply->register_category("nearbygrid", _("Nearby"), "",
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE_SOLO));
         }
         else {
@@ -249,11 +166,11 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE));
         }
 
-        if(search_metadata().has_location()) {
+        try {
+        if(metadata.has_location()) {
             Client::PlaceRes nearbyList;
 
             {
-                CatTypes constTypes;
                 sc::Department::SPtr all_depts = sc::Department::create("", query, _("Places"));
 
                 sc::Department::SPtr estDep = sc::Department::create(constTypes.TYPES_EST.at("All"), query, _("Establishments"));
@@ -359,10 +276,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             }
 
             if(!query_string.empty()){
-                nearbyList = client_.nearby(query_string,search_metadata().location(), sc::SearchQueryBase::search_metadata().locale(), query.department_id());
+                nearbyList = client_.nearby(query_string,metadata.location(), metadata.locale(), dep_id);
             }
             else{
-                nearbyList = client_.nearby(search_metadata().location(), sc::SearchQueryBase::search_metadata().locale(), query.department_id());
+                nearbyList = client_.nearby(metadata.location(), metadata.locale(), dep_id);
             }
 
             for (const Client::Place &place : nearbyList.places) {
@@ -388,8 +305,24 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 res["address"] = place.address;
                 std::vector<sc::Variant> types(place.types.begin(), place.types.end());
                 res["types"] = sc::Variant(types);
-                res["location"] = sc::Variant(search_metadata().location().serialize());
+                res["location"] = sc::Variant(metadata.location().serialize());
+                double distance_d = distance(metadata.location().latitude(),metadata.location().longitude(),place.location.lat,place.location.lng,'K');
+                std::string distance_str;
+                res["distance"] = distance_d;
+                if(distance_d<1) {
+                    distance_str = "<1km";
+                }
+                else if(distance_d<10) {
+                    distance_str = str( boost::format("%.1fkm") % distance_d );
+                }
+                else {
+                    distance_str = str( boost::format("%.0fkm") % distance_d );
+                }
 
+                sc::VariantBuilder builder;
+                builder.add_tuple({{"value", sc::Variant(rating)},{"icon", sc::Variant("image://theme/starred")}});
+                builder.add_tuple({{"value", sc::Variant(distance_str)}});
+                res["attributes"] = builder.end();
 
                 // Push the result
                 if (!reply->push(res)) {
@@ -402,13 +335,18 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 //TODO: There is not (yet) a way to do a canned Query with arbitrary data
             }
         }
+        } catch (domain_error &e) {
+            // Handle exceptions being thrown by the client API
+            cerr << e.what() << endl;
+            eptr = current_exception();
+        }
 
-        if (!query_string.empty()){
+        if (!only_nearby && !query_string.empty()){
             Client::PlaceRes placeList;
-            if(search_metadata().has_location())
-                placeList = client_.places(query_string,search_metadata().location(), sc::SearchQueryBase::search_metadata().locale());
+            if(metadata.has_location())
+                placeList = client_.places(query_string, metadata.location(), metadata.locale(), dep_id);
             else
-                placeList = client_.places(query_string, sc::SearchQueryBase::search_metadata().locale());
+                placeList = client_.places(query_string, metadata.locale(), dep_id);
 
             auto places_cat = reply->register_category("placesgrid", "Query", "",
                 sc::CategoryRenderer(LOCATION_TEMPLATE));
@@ -436,8 +374,8 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 res["address"] = place.address;
                 std::vector<sc::Variant> types(place.types.begin(), place.types.end());
                 res["types"] = sc::Variant(types);
-                if(search_metadata().has_location())
-                    res["location"] = sc::Variant(search_metadata().location().serialize());
+                if(metadata.has_location())
+                    res["location"] = sc::Variant(metadata.location().serialize());
 
 
                 // Push the result
@@ -451,8 +389,9 @@ void Query::run(sc::SearchReplyProxy const& reply) {
     } catch (domain_error &e) {
         // Handle exceptions being thrown by the client API
         cerr << e.what() << endl;
-        reply->error(current_exception());
+        eptr = current_exception();
     }
+    reply->error(current_exception());
 }
 
 void Query::initScope()
@@ -463,9 +402,9 @@ void Query::initScope()
         s_radius = 5000;
         return;
     }
-    cerr << "config" << unity::scopes::Variant(config).serialize_json();
+    // cerr << "config" << unity::scopes::Variant(config).serialize_json();
 
     s_radius = unity::scopes::Variant(config["radius"]).get_double();
-    cerr << "radius: " << s_radius << endl;
+    // cerr << "radius: " << s_radius << endl;
 }
 

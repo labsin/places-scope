@@ -31,7 +31,7 @@ public:
      */
     struct Location {
         double lat;
-        double lang;
+        double lng;
     };
 
     enum Day {
@@ -151,8 +151,8 @@ public:
      * Get the track list for a query
      */
     virtual PlaceRes placesFromToken(const std::string &pageToken, const std::string language = "en");
-    virtual PlaceRes places(const std::string &query, const std::string language = "en");
-    virtual PlaceRes places(const std::string &query, const unity::scopes::Location location, const std::string language = "en");
+    virtual PlaceRes places(const std::string &query, const std::string language = "en", const std::string type = "");
+    virtual PlaceRes places(const std::string &query, const unity::scopes::Location location, const std::string language = "en", const std::string type = "");
 
     /**
      * Cancel any pending queries (this method can be called from a different thread)

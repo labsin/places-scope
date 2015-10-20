@@ -154,9 +154,9 @@ void Preview::run(sc::PreviewReplyProxy const& reply) {
 //            i++;
 //        }
 
-        if(pd.location.lat != 0.0 || pd.location.lang != 0.0 ){
+        if(pd.location.lat != 0.0 || pd.location.lng != 0.0 ){
             sc::PreviewWidget mapWg("map", "image");
-            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=370x200&maptype=roadmap&scale=4&zoom=14&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lang)));
+            mapWg.add_attribute_value("source", sc::Variant("https://maps.googleapis.com/maps/api/staticmap?size=370x200&maptype=roadmap&scale=4&zoom=14&markers=color:blue|"+std::to_string(pd.location.lat)+","+std::to_string(pd.location.lng)));
             mapWg.add_attribute_value("zoomable", sc::Variant("true"));
             toPush.push_back(mapWg);
             col2.push_back("map");

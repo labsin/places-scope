@@ -56,17 +56,24 @@ Client::PlaceRes Client::placesFromToken(const string &pageToken, const string l
     return processPlaces(root);
 }
 
-Client::PlaceRes Client::places(const string &query, const string language)
+Client::PlaceRes Client::places(const string &query, const string language, const string type)
 {
     json::Value root;
     if(query.empty()) {
         return Client::PlaceRes();
     }
 
-    get(
-    { "place", "textsearch", "json" },
-    { { "query", query }, { "key", config_->id }, {"language", language} },
-                root);
+    if(type.empty()){
+        get(
+        { "place", "textsearch", "json" },
+        { { "query", query }, { "key", config_->id }, {"language", language} },
+                    root);
+    } else {
+        get(
+        { "place", "textsearch", "json" },
+        { { "query", query }, { "key", config_->id }, {"language", language}, {"type", type} },
+                    root);
+    }
     return processPlaces(root);
 }
 
@@ -140,7 +147,7 @@ Client::PlaceRes Client::nearby(const unity::scopes::Location location, const st
     return processPlaces(root);
 }
 
-Client::PlaceRes Client::places(const string &query, const unity::scopes::Location location, const string language)
+Client::PlaceRes Client::places(const string &query, const unity::scopes::Location location, const string language, const string type)
 {
     json::Value root;
     if(query.empty()) {
@@ -159,11 +166,20 @@ Client::PlaceRes Client::places(const string &query, const unity::scopes::Locati
     oss.str("");
     oss << location.longitude();
     longitude = oss.str();
-    get(
-    { "place", "textsearch", "json" },
-    { { "query", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
-      { "location", latitude + "," + longitude }, {"language", language} },
-                root);
+    if(type.empty()){
+        get(
+        { "place", "textsearch", "json" },
+        { { "query", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+          { "location", latitude + "," + longitude }, {"language", language} },
+                    root);
+    }
+    else {
+        get(
+        { "place", "textsearch", "json" },
+        { { "query", query }, { "key", config_->id }, { "radius" , std::to_string(s_radius) },
+          { "location", latitude + "," + longitude }, {"language", language}, {"types", type} },
+                    root);
+    }
     return processPlaces(root);
 }
 
@@ -403,7 +419,7 @@ void Client::get(const net::Uri::Path &path,
     net::Uri uri = net::make_uri(config_->apiroot, path, parameters);
     configuration.uri = client->uri_to_string(uri);
 
-    cerr << "uri: " << client->uri_to_string(uri) << endl;
+    //cerr << "uri: " << client->uri_to_string(uri) << endl;
 
     // Give out a user agent string
     configuration.header.add("User-Agent", config_->user_agent);
