@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-19 21:39+0200\n"
+"POT-Creation-Date: 2015-11-03 23:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,46 +77,58 @@ msgstr ""
 msgid "Opening Hours"
 msgstr ""
 
-#: src/scope/query.cpp:153 src/scope/query.cpp:157
+#: src/scope/query.cpp:121
 msgid "Nearby"
 msgstr ""
 
-#: src/scope/query.cpp:166
-msgid "Places"
+#: src/scope/query.cpp:122
+msgid "Wide Search"
 msgstr ""
 
-#: src/scope/query.cpp:168
-msgid "Establishments"
+#: src/scope/query.cpp:132
+msgid "Places Nearby"
 msgstr ""
 
-#: src/scope/query.cpp:171
-msgid "Food"
-msgstr ""
-
-#: src/scope/query.cpp:182
-msgid "Fun"
-msgstr ""
-
-#: src/scope/query.cpp:193
-msgid "Lodging"
+#: src/scope/query.cpp:133
+msgid "Places Wider"
 msgstr ""
 
 #: src/scope/query.cpp:204
+msgid "Places"
+msgstr ""
+
+#: src/scope/query.cpp:206
+msgid "Establishments"
+msgstr ""
+
+#: src/scope/query.cpp:209
+msgid "Food"
+msgstr ""
+
+#: src/scope/query.cpp:220
+msgid "Fun"
+msgstr ""
+
+#: src/scope/query.cpp:231
+msgid "Lodging"
+msgstr ""
+
+#: src/scope/query.cpp:242
 msgid "Store"
 msgstr ""
 
-#: src/scope/query.cpp:215
+#: src/scope/query.cpp:253
 msgid "Transport"
 msgstr ""
 
-#: src/scope/query.cpp:226
+#: src/scope/query.cpp:264
 msgid "Place of Worship"
 msgstr ""
 
-#: src/scope/query.cpp:245
+#: src/scope/query.cpp:283
 msgid "Finance"
 msgstr ""
 
-#: src/scope/query.cpp:256
+#: src/scope/query.cpp:294
 msgid "Health"
 msgstr ""

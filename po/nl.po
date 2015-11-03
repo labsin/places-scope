@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-19 21:22+0200\n"
-"PO-Revision-Date: 2014-12-01 21:18+0100\n"
+"POT-Creation-Date: 2015-11-03 23:29+0100\n"
+"PO-Revision-Date: 2015-11-03 23:32+0100\n"
 "Last-Translator: Sam Segers <sam.sgrs@gmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: src/scope/preview.cpp:81
 msgid "Address"
@@ -29,15 +29,15 @@ msgstr "Bellen"
 msgid "Closed"
 msgstr "Gesloten"
 
-#: src/scope/query.cpp:168
+#: src/scope/query.cpp:206
 msgid "Establishments"
 msgstr "Vestiging"
 
-#: src/scope/query.cpp:245
+#: src/scope/query.cpp:283
 msgid "Finance"
 msgstr "Financiën"
 
-#: src/scope/query.cpp:171
+#: src/scope/query.cpp:209
 msgid "Food"
 msgstr "Eten"
 
@@ -45,15 +45,15 @@ msgstr "Eten"
 msgid "Friday"
 msgstr "Vrijdag"
 
-#: src/scope/query.cpp:182
+#: src/scope/query.cpp:220
 msgid "Fun"
 msgstr "Plezier"
 
-#: src/scope/query.cpp:256
+#: src/scope/query.cpp:294
 msgid "Health"
 msgstr "Gezondheid"
 
-#: src/scope/query.cpp:193
+#: src/scope/query.cpp:231
 msgid "Lodging"
 msgstr "Verblijf"
 
@@ -65,7 +65,7 @@ msgstr "Maandag"
 msgid "Navigate"
 msgstr "Navigeren"
 
-#: src/scope/query.cpp:153 src/scope/query.cpp:157
+#: src/scope/query.cpp:121
 msgid "Nearby"
 msgstr "Dichtbij"
 
@@ -77,19 +77,27 @@ msgstr "Geopend"
 msgid "Opening Hours"
 msgstr "Openingsuren"
 
-#: src/scope/query.cpp:226
+#: src/scope/query.cpp:264
 msgid "Place of Worship"
 msgstr "Bedehuis"
 
-#: src/scope/query.cpp:166
+#: src/scope/query.cpp:204
 msgid "Places"
 msgstr "Plaatsen"
+
+#: src/scope/query.cpp:132
+msgid "Places Nearby"
+msgstr "Plaatsen Dichtbij"
+
+#: src/scope/query.cpp:133
+msgid "Places Wider"
+msgstr "Plaatsen Verder"
 
 #: src/api/client.cpp:35
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: src/scope/query.cpp:204
+#: src/scope/query.cpp:242
 msgid "Store"
 msgstr "Winkel"
 
@@ -105,7 +113,7 @@ msgstr "Tel."
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: src/scope/query.cpp:215
+#: src/scope/query.cpp:253
 msgid "Transport"
 msgstr "Vervoer"
 
@@ -120,6 +128,10 @@ msgstr "Website"
 #: src/api/client.cpp:29
 msgid "Wednesday"
 msgstr "Woensdag"
+
+#: src/scope/query.cpp:122
+msgid "Wide Search"
+msgstr "Verder"
 
 #~ msgid "A scope for looking up places nearby"
 #~ msgstr "Een scope voor het opzoeken van nabijgelegen plaatsen"
@@ -327,9 +339,6 @@ msgstr "Woensdag"
 
 #~ msgid "Physiotherapist"
 #~ msgstr "Fysiotherapeut"
-
-#~ msgid "Places Scope"
-#~ msgstr "Plaatsen"
 
 #~ msgid "Plumber"
 #~ msgstr "Loodgieter"

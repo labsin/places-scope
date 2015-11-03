@@ -118,6 +118,8 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
         auto dep_id = query.department_id();
         bool only_nearby = false;
+        std::string nearby_title = _("Nearby");
+        std::string wider_title = _("Wide Search");
 
         string query_string = alg::trim_copy(query.query_string());
         if (query_string.empty() && !metadata.has_location()) {
@@ -127,16 +129,19 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
         if (metadata.is_aggregated())
         {
+            nearby_title = _("Places Nearby");
+            wider_title = _("Places Wider");
+
             auto keywords = metadata.aggregated_keywords();
 
             if (keywords.find("food") != keywords.end())
             {
-                dep_id = constTypes.TYPES_EST_FOOD.at("ALL");
+                dep_id = constTypes.TYPES_EST_FOOD.at("All");
             }
 
             if (keywords.find("drink") != keywords.end())
             {
-                dep_id = constTypes.TYPES_EST_FUN.at("Bar");
+                dep_id = "bar|cafe";
             }
 
             if (keywords.find("poi") != keywords.end())
@@ -146,23 +151,48 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
             if (keywords.find("business") != keywords.end())
             {
-                dep_id = constTypes.TYPES_EST.at("ALL");
+                dep_id = constTypes.TYPES_EST.at("All");
             }
 
-            if (keywords.find("nearby") != keywords.end())
+            if (keywords.find("nearby.bored") != keywords.end())
             {
                 only_nearby = true;
+                dep_id = constTypes.TYPES_EST_FUN.at("ALL");
+            }
+
+            if (keywords.find("nearby.onthemove") != keywords.end())
+            {
+                only_nearby = true;
+                dep_id = "atm|car_rental|lodging|airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station";
+            }
+
+            if (keywords.find("nearby.hungry") != keywords.end())
+            {
+                only_nearby = true;
+                dep_id = constTypes.TYPES_EST_FOOD.at("ALL");
+            }
+
+            if (keywords.find("nearby.thirsty") != keywords.end())
+            {
+                only_nearby = true;
+                dep_id = "bar|cafe";
+            }
+
+            if (keywords.find("nearby.stressed") != keywords.end())
+            {
+                only_nearby = true;
+                dep_id = constTypes.TYPES_EST_FUN.at("ALL");
             }
         }
 
         client_.setRadius(s_radius);
         sc::Category::SCPtr nearyby_cat;
-        if(query_string.empty()) {
-            nearyby_cat = reply->register_category("nearbygrid", _("Nearby"), "",
+        if(query_string.empty() || only_nearby) {
+            nearyby_cat = reply->register_category("nearbygrid", nearby_title, "",
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE_SOLO));
         }
         else {
-            nearyby_cat = reply->register_category("nearbycarousel", _("Nearby"), "",
+            nearyby_cat = reply->register_category("nearbycarousel", nearby_title, "",
                                                         sc::CategoryRenderer(NEARBY_TEMPLATE));
         }
 
@@ -348,7 +378,7 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             else
                 placeList = client_.places(query_string, metadata.locale(), dep_id);
 
-            auto places_cat = reply->register_category("placesgrid", "Query", "",
+            auto places_cat = reply->register_category("placesgrid", wider_title, "",
                 sc::CategoryRenderer(LOCATION_TEMPLATE));
 
             for (const Client::Place &place : placeList.places) {
