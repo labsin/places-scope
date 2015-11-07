@@ -5,7 +5,7 @@ include("QtCreatorResources")
 
 qtcreator_add_project_resources(
     "places.secret"
-    "readme.txt"
+    "readme.md"
     "manifest.json.in"
     "places.apparmor"
 )
