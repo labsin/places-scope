@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 23:29+0100\n"
+"POT-Creation-Date: 2015-11-07 14:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,26 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
+#: src/scope/query.cpp:204
+msgid "Places"
+msgstr ""
+
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:2
+msgid "A scope for looking up places nearby"
+msgstr ""
+
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:3
+msgid ""
+"location google Places scope scopes food where look nearby yelp foursquare "
+"sights sightseeing POI point of interest restaurant restaurants city travel "
+"travelling tourist information Sam Segers local business"
+msgstr ""
+
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
+msgid "Radius"
+msgstr ""
 
 #: src/api/client.cpp:23
 msgid "Sunday"
@@ -93,42 +113,390 @@ msgstr ""
 msgid "Places Wider"
 msgstr ""
 
-#: src/scope/query.cpp:204
-msgid "Places"
-msgstr ""
-
-#: src/scope/query.cpp:206
+#: include/scope/query.h:35
 msgid "Establishments"
 msgstr ""
 
-#: src/scope/query.cpp:209
-msgid "Food"
+#: include/scope/query.h:37
+msgid "Art gallery"
 msgstr ""
 
-#: src/scope/query.cpp:220
+#: include/scope/query.h:38
+msgid "Atm"
+msgstr ""
+
+#: include/scope/query.h:39
+msgid "Beauty Salon"
+msgstr ""
+
+#: include/scope/query.h:40
+msgid "Car Rental"
+msgstr ""
+
+#: include/scope/query.h:41
+msgid "Car Repair"
+msgstr ""
+
+#: include/scope/query.h:42
+msgid "Car Wash"
+msgstr ""
+
+#: include/scope/query.h:43
+msgid "Cemetry"
+msgstr ""
+
+#: include/scope/query.h:44
+msgid "City Hall"
+msgstr ""
+
+#: include/scope/query.h:45
+msgid "Courthouse"
+msgstr ""
+
+#: include/scope/query.h:46
+msgid "Electrician"
+msgstr ""
+
+#: include/scope/query.h:47
+msgid "Embassy"
+msgstr ""
+
+#: include/scope/query.h:48
+msgid "Fire Station"
+msgstr ""
+
+#: include/scope/query.h:49
+msgid "Florist"
+msgstr ""
+
+#: include/scope/query.h:50
+msgid "Funeral Home"
+msgstr ""
+
+#: include/scope/query.h:51
+msgid "General Contractor"
+msgstr ""
+
+#: include/scope/query.h:52
+msgid "Hair Care"
+msgstr ""
+
+#: include/scope/query.h:53
+msgid "Hospital"
+msgstr ""
+
+#: include/scope/query.h:54
+msgid "Laundry"
+msgstr ""
+
+#: include/scope/query.h:55
+msgid "Local Government Office"
+msgstr ""
+
+#: include/scope/query.h:56
+msgid "Locksmith"
+msgstr ""
+
+#: include/scope/query.h:57
+msgid "Moving Company"
+msgstr ""
+
+#: include/scope/query.h:58
+msgid "Painter"
+msgstr ""
+
+#: include/scope/query.h:59
+msgid "Plumber"
+msgstr ""
+
+#: include/scope/query.h:60
+msgid "Police"
+msgstr ""
+
+#: include/scope/query.h:61
+msgid "Post Office"
+msgstr ""
+
+#: include/scope/query.h:62
+msgid "Real Estate Agency"
+msgstr ""
+
+#: include/scope/query.h:63
+msgid "Roofing Contractor"
+msgstr ""
+
+#: include/scope/query.h:64
+msgid "School"
+msgstr ""
+
+#: include/scope/query.h:65
+msgid "Storage"
+msgstr ""
+
+#: include/scope/query.h:66
+msgid "Travel Agency"
+msgstr ""
+
+#: include/scope/query.h:67
+msgid "University"
+msgstr ""
+
+#: include/scope/query.h:69
 msgid "Fun"
 msgstr ""
 
-#: src/scope/query.cpp:231
-msgid "Lodging"
+#: include/scope/query.h:71
+msgid "Amusement Park"
 msgstr ""
 
-#: src/scope/query.cpp:242
-msgid "Store"
+#: include/scope/query.h:72
+msgid "Aquarium"
 msgstr ""
 
-#: src/scope/query.cpp:253
-msgid "Transport"
+#: include/scope/query.h:73
+msgid "Bar"
 msgstr ""
 
-#: src/scope/query.cpp:264
+#: include/scope/query.h:74
+msgid "Bowling Alley"
+msgstr ""
+
+#: include/scope/query.h:75
+msgid "Cafe"
+msgstr ""
+
+#: include/scope/query.h:76
+msgid "Casino"
+msgstr ""
+
+#: include/scope/query.h:77
+msgid "Gym"
+msgstr ""
+
+#: include/scope/query.h:78
+msgid "Library"
+msgstr ""
+
+#: include/scope/query.h:79
+msgid "Movie Rental"
+msgstr ""
+
+#: include/scope/query.h:80
+msgid "Movie Theater"
+msgstr ""
+
+#: include/scope/query.h:81
+msgid "Museum"
+msgstr ""
+
+#: include/scope/query.h:82
+msgid "Night Club"
+msgstr ""
+
+#: include/scope/query.h:83
+msgid "Park"
+msgstr ""
+
+#: include/scope/query.h:84
+msgid "Shopping Mall"
+msgstr ""
+
+#: include/scope/query.h:85
+msgid "Spa"
+msgstr ""
+
+#: include/scope/query.h:86
+msgid "Stadium"
+msgstr ""
+
+#: include/scope/query.h:87
+msgid "Zoo"
+msgstr ""
+
+#: include/scope/query.h:89
 msgid "Place of Worship"
 msgstr ""
 
-#: src/scope/query.cpp:283
+#: include/scope/query.h:91
+msgid "Church"
+msgstr ""
+
+#: include/scope/query.h:92
+msgid "Hindu Temple"
+msgstr ""
+
+#: include/scope/query.h:93
+msgid "Mosque"
+msgstr ""
+
+#: include/scope/query.h:94
+msgid "synagogue"
+msgstr ""
+
+#: include/scope/query.h:96
+msgid "Store"
+msgstr ""
+
+#: include/scope/query.h:98
+msgid "Bicycle Store"
+msgstr ""
+
+#: include/scope/query.h:99
+msgid "Book Store"
+msgstr ""
+
+#: include/scope/query.h:100
+msgid "Car Dealer"
+msgstr ""
+
+#: include/scope/query.h:101
+msgid "Clothing Store"
+msgstr ""
+
+#: include/scope/query.h:102
+msgid "Convenience Store"
+msgstr ""
+
+#: include/scope/query.h:103
+msgid "Department Store"
+msgstr ""
+
+#: include/scope/query.h:104
+msgid "Electronics Store"
+msgstr ""
+
+#: include/scope/query.h:105
+msgid "Furniture Store"
+msgstr ""
+
+#: include/scope/query.h:106
+msgid "Grocery or Supermarket"
+msgstr ""
+
+#: include/scope/query.h:107
+msgid "Hardware Store"
+msgstr ""
+
+#: include/scope/query.h:108
+msgid "Home Goods Store"
+msgstr ""
+
+#: include/scope/query.h:109
+msgid "Jewelry Store"
+msgstr ""
+
+#: include/scope/query.h:110
+msgid "Liquor Store"
+msgstr ""
+
+#: include/scope/query.h:111
+msgid "Pet Store"
+msgstr ""
+
+#: include/scope/query.h:112
+msgid "Shoe Store"
+msgstr ""
+
+#: include/scope/query.h:114
+msgid "Lodging"
+msgstr ""
+
+#: include/scope/query.h:116
+msgid "Campground"
+msgstr ""
+
+#: include/scope/query.h:117
+msgid "RV Park"
+msgstr ""
+
+#: include/scope/query.h:119
+msgid "Transport"
+msgstr ""
+
+#: include/scope/query.h:121
+msgid "Airport"
+msgstr ""
+
+#: include/scope/query.h:122
+msgid "Bus Station"
+msgstr ""
+
+#: include/scope/query.h:123
+msgid "Gas Station"
+msgstr ""
+
+#: include/scope/query.h:124
+msgid "Parking"
+msgstr ""
+
+#: include/scope/query.h:125
+msgid "Subway Station"
+msgstr ""
+
+#: include/scope/query.h:126
+msgid "Taxi Stand"
+msgstr ""
+
+#: include/scope/query.h:127
+msgid "Train Station"
+msgstr ""
+
+#: include/scope/query.h:129
+msgid "Food"
+msgstr ""
+
+#: include/scope/query.h:131
+msgid "Bakery"
+msgstr ""
+
+#: include/scope/query.h:132
+msgid "Meal Delivery"
+msgstr ""
+
+#: include/scope/query.h:133
+msgid "Meal Takeaway"
+msgstr ""
+
+#: include/scope/query.h:134
+msgid "Restaurant"
+msgstr ""
+
+#: include/scope/query.h:136
+msgid "Health"
+msgstr ""
+
+#: include/scope/query.h:138
+msgid "Doctor"
+msgstr ""
+
+#: include/scope/query.h:139
+msgid "Dentist"
+msgstr ""
+
+#: include/scope/query.h:140
+msgid "Pharmacy"
+msgstr ""
+
+#: include/scope/query.h:141
+msgid "Physiotherapist"
+msgstr ""
+
+#: include/scope/query.h:142
+msgid "Veterinary Care"
+msgstr ""
+
+#: include/scope/query.h:144
 msgid "Finance"
 msgstr ""
 
-#: src/scope/query.cpp:294
-msgid "Health"
+#: include/scope/query.h:146
+msgid "Bank"
+msgstr ""
+
+#: include/scope/query.h:147
+msgid "Lawyer"
+msgstr ""
+
+#: include/scope/query.h:148
+msgid "Insurance Agency"
 msgstr ""

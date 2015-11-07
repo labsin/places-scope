@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 23:29+0100\n"
+"POT-Creation-Date: 2015-11-07 14:14+0100\n"
 "PO-Revision-Date: 2015-11-03 23:32+0100\n"
 "Last-Translator: Sam Segers <sam.sgrs@gmail.com>\n"
 "Language-Team: \n"
@@ -17,27 +17,167 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.5\n"
 
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:2
+msgid "A scope for looking up places nearby"
+msgstr "Een scope voor het opzoeken van nabijgelegen plaatsen"
+
 #: src/scope/preview.cpp:81
 msgid "Address"
 msgstr "Adres"
+
+#: include/scope/query.h:121
+msgid "Airport"
+msgstr "Luchthaven"
+
+#: include/scope/query.h:71
+msgid "Amusement Park"
+msgstr "Pretpark"
+
+#: include/scope/query.h:72
+msgid "Aquarium"
+msgstr "Aquarium"
+
+#: include/scope/query.h:37
+msgid "Art gallery"
+msgstr "Kunstgalerie"
+
+#: include/scope/query.h:38
+msgid "Atm"
+msgstr "Bancontact"
+
+#: include/scope/query.h:131
+msgid "Bakery"
+msgstr "Bakkerij"
+
+#: include/scope/query.h:146
+msgid "Bank"
+msgstr "Bank"
+
+#: include/scope/query.h:73
+msgid "Bar"
+msgstr "Bar"
+
+#: include/scope/query.h:39
+msgid "Beauty Salon"
+msgstr "Schoonheidssalon"
+
+#: include/scope/query.h:98
+msgid "Bicycle Store"
+msgstr "Fietswinkel"
+
+#: include/scope/query.h:99
+msgid "Book Store"
+msgstr "Boekenwinkel"
+
+#: include/scope/query.h:74
+msgid "Bowling Alley"
+msgstr "Bowling"
+
+#: include/scope/query.h:122
+msgid "Bus Station"
+msgstr "Bushalte"
+
+#: include/scope/query.h:75
+msgid "Cafe"
+msgstr "Café"
 
 #: src/scope/preview.cpp:107
 msgid "Call"
 msgstr "Bellen"
 
+#: include/scope/query.h:116
+msgid "Campground"
+msgstr "Kampeerterrein"
+
+#: include/scope/query.h:100
+msgid "Car Dealer"
+msgstr "Autodealer"
+
+#: include/scope/query.h:40
+msgid "Car Rental"
+msgstr "Autoverhuur"
+
+#: include/scope/query.h:41
+msgid "Car Repair"
+msgstr "Autoreparaties"
+
+#: include/scope/query.h:42
+msgid "Car Wash"
+msgstr "Car Wash"
+
+#: include/scope/query.h:76
+msgid "Casino"
+msgstr "Casino"
+
+#: include/scope/query.h:43
+msgid "Cemetry"
+msgstr "Kerkhof"
+
+#: include/scope/query.h:91
+msgid "Church"
+msgstr "Kerk"
+
+#: include/scope/query.h:44
+msgid "City Hall"
+msgstr "Stadhuis"
+
 #: src/scope/preview.cpp:88
 msgid "Closed"
 msgstr "Gesloten"
 
-#: src/scope/query.cpp:206
+#: include/scope/query.h:101
+msgid "Clothing Store"
+msgstr "Klerenwinkel"
+
+#: include/scope/query.h:102
+msgid "Convenience Store"
+msgstr "Gemakswinkel"
+
+#: include/scope/query.h:45
+msgid "Courthouse"
+msgstr "Gerechtsgebouw"
+
+#: include/scope/query.h:139
+msgid "Dentist"
+msgstr "Tandarts"
+
+#: include/scope/query.h:103
+msgid "Department Store"
+msgstr "Warenhuis"
+
+#: include/scope/query.h:138
+msgid "Doctor"
+msgstr "Dokter"
+
+#: include/scope/query.h:46
+msgid "Electrician"
+msgstr "Electricien"
+
+#: include/scope/query.h:104
+msgid "Electronics Store"
+msgstr "Electronica Winkel"
+
+#: include/scope/query.h:47
+msgid "Embassy"
+msgstr "Embassade"
+
+#: include/scope/query.h:35
 msgid "Establishments"
 msgstr "Vestiging"
 
-#: src/scope/query.cpp:283
+#: include/scope/query.h:144
 msgid "Finance"
 msgstr "Financiën"
 
-#: src/scope/query.cpp:209
+#: include/scope/query.h:48
+msgid "Fire Station"
+msgstr "Brandweerkazerne"
+
+#: include/scope/query.h:49
+msgid "Florist"
+msgstr "Bloemist"
+
+#: include/scope/query.h:129
 msgid "Food"
 msgstr "Eten"
 
@@ -45,21 +185,125 @@ msgstr "Eten"
 msgid "Friday"
 msgstr "Vrijdag"
 
-#: src/scope/query.cpp:220
+#: include/scope/query.h:69
 msgid "Fun"
 msgstr "Plezier"
 
-#: src/scope/query.cpp:294
+#: include/scope/query.h:50
+msgid "Funeral Home"
+msgstr "Uitvaartcentrum"
+
+#: include/scope/query.h:105
+msgid "Furniture Store"
+msgstr "Meubelwinkel"
+
+#: include/scope/query.h:123
+msgid "Gas Station"
+msgstr "Tankstation"
+
+#: include/scope/query.h:51
+msgid "General Contractor"
+msgstr "Aannemer"
+
+#: include/scope/query.h:106
+msgid "Grocery or Supermarket"
+msgstr "Supermarket"
+
+#: include/scope/query.h:77
+msgid "Gym"
+msgstr "Fitness"
+
+#: include/scope/query.h:52
+msgid "Hair Care"
+msgstr "Kapper"
+
+#: include/scope/query.h:107
+msgid "Hardware Store"
+msgstr "Bouwmarkt"
+
+#: include/scope/query.h:136
 msgid "Health"
 msgstr "Gezondheid"
 
-#: src/scope/query.cpp:231
+#: include/scope/query.h:92
+msgid "Hindu Temple"
+msgstr "Hindoe Tempel"
+
+#: include/scope/query.h:108
+msgid "Home Goods Store"
+msgstr "Decoratiewinkel"
+
+#: include/scope/query.h:53
+msgid "Hospital"
+msgstr "Ziekenhuis"
+
+#: include/scope/query.h:148
+msgid "Insurance Agency"
+msgstr "Verzekeringskantoor"
+
+#: include/scope/query.h:109
+msgid "Jewelry Store"
+msgstr "Juweelwinkel"
+
+#: include/scope/query.h:54
+msgid "Laundry"
+msgstr "Wasserij"
+
+#: include/scope/query.h:147
+msgid "Lawyer"
+msgstr "Advocaat"
+
+#: include/scope/query.h:78
+msgid "Library"
+msgstr "Bibliotheek"
+
+#: include/scope/query.h:110
+msgid "Liquor Store"
+msgstr "Drankhandel"
+
+#: include/scope/query.h:55
+msgid "Local Government Office"
+msgstr "-"
+
+#: include/scope/query.h:56
+msgid "Locksmith"
+msgstr "Slotenmaker"
+
+#: include/scope/query.h:114
 msgid "Lodging"
 msgstr "Verblijf"
+
+#: include/scope/query.h:132
+msgid "Meal Delivery"
+msgstr "Maaltijd Levering"
+
+#: include/scope/query.h:133
+msgid "Meal Takeaway"
+msgstr "Takeaway"
 
 #: src/api/client.cpp:25
 msgid "Monday"
 msgstr "Maandag"
+
+#: include/scope/query.h:93
+msgid "Mosque"
+msgstr "Moskee"
+
+#: include/scope/query.h:79
+msgid "Movie Rental"
+msgstr "Filmverhuur"
+
+#: include/scope/query.h:80
+msgid "Movie Theater"
+msgstr "Cinema"
+
+#: include/scope/query.h:57
+msgid "Moving Company"
+msgstr "Verhuisfirma"
+
+#: include/scope/query.h:81
+msgid "Museum"
+msgstr "Museum"
 
 #: src/scope/preview.cpp:140
 msgid "Navigate"
@@ -69,6 +313,10 @@ msgstr "Navigeren"
 msgid "Nearby"
 msgstr "Dichtbij"
 
+#: include/scope/query.h:82
+msgid "Night Club"
+msgstr "Nachtclub"
+
 #: src/scope/preview.cpp:88
 msgid "Open"
 msgstr "Geopend"
@@ -77,10 +325,35 @@ msgstr "Geopend"
 msgid "Opening Hours"
 msgstr "Openingsuren"
 
-#: src/scope/query.cpp:264
+#: include/scope/query.h:58
+msgid "Painter"
+msgstr "Schilder"
+
+#: include/scope/query.h:83
+msgid "Park"
+msgstr "Park"
+
+#: include/scope/query.h:124
+msgid "Parking"
+msgstr "Parking"
+
+#: include/scope/query.h:111
+msgid "Pet Store"
+msgstr "Dierenwinkel"
+
+#: include/scope/query.h:140
+msgid "Pharmacy"
+msgstr "Apotheker"
+
+#: include/scope/query.h:141
+msgid "Physiotherapist"
+msgstr "Fysiotherapeut"
+
+#: include/scope/query.h:89
 msgid "Place of Worship"
 msgstr "Bedehuis"
 
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:1
 #: src/scope/query.cpp:204
 msgid "Places"
 msgstr "Plaatsen"
@@ -93,17 +366,81 @@ msgstr "Plaatsen Dichtbij"
 msgid "Places Wider"
 msgstr "Plaatsen Verder"
 
+#: include/scope/query.h:59
+msgid "Plumber"
+msgstr "Loodgieter"
+
+#: include/scope/query.h:60
+msgid "Police"
+msgstr "Politie"
+
+#: include/scope/query.h:61
+msgid "Post Office"
+msgstr "Postkantoor"
+
+#: include/scope/query.h:117
+msgid "RV Park"
+msgstr "Camperpark"
+
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places-settings.ini.in.h:1
+msgid "Radius"
+msgstr "Straal"
+
+#: include/scope/query.h:62
+msgid "Real Estate Agency"
+msgstr "Makelaar"
+
+#: include/scope/query.h:134
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#: include/scope/query.h:63
+msgid "Roofing Contractor"
+msgstr "Dakwerker"
+
 #: src/api/client.cpp:35
 msgid "Saturday"
 msgstr "Zaterdag"
 
-#: src/scope/query.cpp:242
+#: include/scope/query.h:64
+msgid "School"
+msgstr "School"
+
+#: include/scope/query.h:112
+msgid "Shoe Store"
+msgstr "Schoenwinkel"
+
+#: include/scope/query.h:84
+msgid "Shopping Mall"
+msgstr "Winkelcenter"
+
+#: include/scope/query.h:85
+msgid "Spa"
+msgstr "Kuuroord"
+
+#: include/scope/query.h:86
+msgid "Stadium"
+msgstr "Station"
+
+#: include/scope/query.h:65
+msgid "Storage"
+msgstr "Opslag"
+
+#: include/scope/query.h:96
 msgid "Store"
 msgstr "Winkel"
+
+#: include/scope/query.h:125
+msgid "Subway Station"
+msgstr "Metrostation"
 
 #: src/api/client.cpp:23
 msgid "Sunday"
 msgstr "Zondag"
+
+#: include/scope/query.h:126
+msgid "Taxi Stand"
+msgstr "Taxistandplaats"
 
 #: src/scope/preview.cpp:95
 msgid "Tel"
@@ -113,13 +450,29 @@ msgstr "Tel."
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: src/scope/query.cpp:253
+#: include/scope/query.h:127
+msgid "Train Station"
+msgstr "Treinstation"
+
+#: include/scope/query.h:119
 msgid "Transport"
 msgstr "Vervoer"
+
+#: include/scope/query.h:66
+msgid "Travel Agency"
+msgstr "Reisbureau"
 
 #: src/api/client.cpp:27
 msgid "Tuesday"
 msgstr "Dinsdag"
+
+#: include/scope/query.h:67
+msgid "University"
+msgstr "Universiteit"
+
+#: include/scope/query.h:142
+msgid "Veterinary Care"
+msgstr "Veterinaire Zorg"
 
 #: src/scope/preview.cpp:114
 msgid "Website"
@@ -133,295 +486,33 @@ msgstr "Woensdag"
 msgid "Wide Search"
 msgstr "Verder"
 
-#~ msgid "A scope for looking up places nearby"
-#~ msgstr "Een scope voor het opzoeken van nabijgelegen plaatsen"
+#: include/scope/query.h:87
+msgid "Zoo"
+msgstr "Dierentuin"
 
-#~ msgid "Airport"
-#~ msgstr "Luchthaven"
+#: ../places-scope-build/data/com.ubuntu.developer.labsin.places_places.ini.in.h:3
+msgid ""
+"location google Places scope scopes food where look nearby yelp foursquare "
+"sights sightseeing POI point of interest restaurant restaurants city travel "
+"travelling tourist information Sam Segers local business"
+msgstr ""
+"location locatie google Places scope scopes food eten where waar look nearby "
+"dichtbij yelp foursquare sights sightseeing POI point of interest restaurant "
+"restaurants city stad travel rijs travelling rijzen tourist information "
+"informatie Sam Segers local locaal business bedrijf"
 
-#~ msgid "Amusement Park"
-#~ msgstr "Pretpark"
-
-#~ msgid "Aquarium"
-#~ msgstr "Aquarium"
-
-#~ msgid "Art gallery"
-#~ msgstr "Kunstgalerie"
-
-#~ msgid "Atm"
-#~ msgstr "Bancontact"
-
-#~ msgid "Bakery"
-#~ msgstr "Bakkerij"
-
-#~ msgid "Bank"
-#~ msgstr "Bank"
-
-#~ msgid "Bar"
-#~ msgstr "Bar"
-
-#~ msgid "Beauty Salon"
-#~ msgstr "Schoonheidssalon"
-
-#~ msgid "Bicycle Store"
-#~ msgstr "Fietswinkel"
-
-#~ msgid "Book Store"
-#~ msgstr "Boekenwinkel"
-
-#~ msgid "Bowling Alley"
-#~ msgstr "Bowling"
-
-#~ msgid "Bus Station"
-#~ msgstr "Bushalte"
-
-#~ msgid "Cafe"
-#~ msgstr "Café"
-
-#~ msgid "Campground"
-#~ msgstr "Kampeerterrein"
-
-#~ msgid "Car Dealer"
-#~ msgstr "Autodealer"
-
-#~ msgid "Car Rental"
-#~ msgstr "Autoverhuur"
-
-#~ msgid "Car Repair"
-#~ msgstr "Autoreparaties"
-
-#~ msgid "Car Wash"
-#~ msgstr "Car Wash"
-
-#~ msgid "Casino"
-#~ msgstr "Casino"
-
-#~ msgid "Cemetry"
-#~ msgstr "Kerkhof"
-
-#~ msgid "Church"
-#~ msgstr "Kerk"
-
-#~ msgid "City Hall"
-#~ msgstr "Stadhuis"
-
-#~ msgid "Clothing Store"
-#~ msgstr "Klerenwinkel"
-
-#~ msgid "Convenience Store"
-#~ msgstr "Gemakswinkel"
-
-#~ msgid "Courthouse"
-#~ msgstr "Gerechtsgebouw"
-
-#~ msgid "Dentist"
-#~ msgstr "Tandarts"
-
-#~ msgid "Department Store"
-#~ msgstr "Warenhuis"
-
-#~ msgid "Doctor"
-#~ msgstr "Dokter"
-
-#~ msgid "Electrician"
-#~ msgstr "Electricien"
-
-#~ msgid "Electronics Store"
-#~ msgstr "Electronica Winkel"
-
-#~ msgid "Embassy"
-#~ msgstr "Embassade"
-
-#~ msgid "Fire Station"
-#~ msgstr "Brandweerkazerne"
-
-#~ msgid "Florist"
-#~ msgstr "Bloemist"
-
-#~ msgid "Funeral Home"
-#~ msgstr "Uitvaartcentrum"
-
-#~ msgid "Furniture Store"
-#~ msgstr "Meubelwinkel"
-
-#~ msgid "Gas Station"
-#~ msgstr "Tankstation"
-
-#~ msgid "General Contractor"
-#~ msgstr "Aannemer"
-
-#~ msgid "Grocery or Supermarket"
-#~ msgstr "Supermarket"
-
-#~ msgid "Gym"
-#~ msgstr "Fitness"
-
-#~ msgid "Hair Care"
-#~ msgstr "Kapper"
-
-#~ msgid "Hardware Store"
-#~ msgstr "Bouwmarkt"
-
-#~ msgid "Hindu Temple"
-#~ msgstr "Hindoe Tempel"
-
-#~ msgid "Home Goods Store"
-#~ msgstr "Decoratiewinkel"
-
-#~ msgid "Hospital"
-#~ msgstr "Ziekenhuis"
-
-#~ msgid "Insurance Agency"
-#~ msgstr "Verzekeringskantoor"
-
-#~ msgid "Jewelry Store"
-#~ msgstr "Juweelwinkel"
-
-#~ msgid "Laundry"
-#~ msgstr "Wasserij"
-
-#~ msgid "Lawyer"
-#~ msgstr "Advocaat"
-
-#~ msgid "Library"
-#~ msgstr "Bibliotheek"
-
-#~ msgid "Liquor Store"
-#~ msgstr "Drankhandel"
-
-#~ msgid "Local Government Office"
-#~ msgstr "-"
-
-#~ msgid "Locksmith"
-#~ msgstr "Slotenmaker"
-
-#~ msgid "Meal Delivery"
-#~ msgstr "Maaltijd Levering"
-
-#~ msgid "Meal Takeaway"
-#~ msgstr "Takeaway"
-
-#~ msgid "Mosque"
-#~ msgstr "Moskee"
-
-#~ msgid "Movie Rental"
-#~ msgstr "Filmverhuur"
-
-#~ msgid "Movie Theater"
-#~ msgstr "Cinema"
-
-#~ msgid "Moving Company"
-#~ msgstr "Verhuisfirma"
-
-#~ msgid "Museum"
-#~ msgstr "Museum"
-
-#~ msgid "Night Club"
-#~ msgstr "Nachtclub"
+#: include/scope/query.h:94
+msgid "synagogue"
+msgstr "synagoge"
 
 #~ msgid "Now open:"
 #~ msgstr "Nu open:"
 
-#~ msgid "Painter"
-#~ msgstr "Schilder"
-
-#~ msgid "Park"
-#~ msgstr "Park"
-
-#~ msgid "Parking"
-#~ msgstr "Parking"
-
-#~ msgid "Pet Store"
-#~ msgstr "Dierenwinkel"
-
-#~ msgid "Pharmacy"
-#~ msgstr "Apotheker"
-
-#~ msgid "Physiotherapist"
-#~ msgstr "Fysiotherapeut"
-
-#~ msgid "Plumber"
-#~ msgstr "Loodgieter"
-
-#~ msgid "Police"
-#~ msgstr "Politie"
-
-#~ msgid "Post Office"
-#~ msgstr "Postkantoor"
-
-#~ msgid "RV Park"
-#~ msgstr "Camperpark"
-
-#~ msgid "Radius"
-#~ msgstr "Straal"
-
-#~ msgid "Real Estate Agency"
-#~ msgstr "Makelaar"
-
-#~ msgid "Restaurant"
-#~ msgstr "Restaurant"
-
-#~ msgid "Roofing Contractor"
-#~ msgstr "Dakwerker"
-
-#~ msgid "School"
-#~ msgstr "School"
-
-#~ msgid "Shoe Store"
-#~ msgstr "Schoenwinkel"
-
-#~ msgid "Shopping Mall"
-#~ msgstr "Winkelcenter"
-
-#~ msgid "Spa"
-#~ msgstr "Kuuroord"
-
-#~ msgid "Stadium"
-#~ msgstr "Station"
-
-#~ msgid "Storage"
-#~ msgstr "Opslag"
-
-#~ msgid "Subway Station"
-#~ msgstr "Metrostation"
-
-#~ msgid "Taxi Stand"
-#~ msgstr "Taxistandplaats"
-
-#~ msgid "Train Station"
-#~ msgstr "Treinstation"
-
-#~ msgid "Travel Agency"
-#~ msgstr "Reisbureau"
-
-#~ msgid "University"
-#~ msgstr "Universiteit"
-
-#~ msgid "Veterinary Care"
-#~ msgstr "Veterinaire Zorg"
-
-#~ msgid "Zoo"
-#~ msgstr "Dierentuin"
-
 #~ msgid "location google Places"
 #~ msgstr "locatie google Places"
 
-#~ msgid ""
-#~ "location google Places scope scopes food where look nearby yelp "
-#~ "foursquare sights sightseeing POI point of interest restaurant "
-#~ "restaurants city travel travelling tourist information Sam Segers local "
-#~ "business"
-#~ msgstr ""
-#~ "location locatie google Places scope scopes food eten where waar look "
-#~ "nearby dichtbij yelp foursquare sights sightseeing POI point of interest "
-#~ "restaurant restaurants city stad travel rijs travelling rijzen tourist "
-#~ "information informatie Sam Segers local locaal business bedrijf"
-
 #~ msgid "no"
 #~ msgstr "nee"
-
-#~ msgid "synagogue"
-#~ msgstr "synagoge"
 
 #~ msgid "unknown"
 #~ msgstr "onbekend"
