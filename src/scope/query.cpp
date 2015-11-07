@@ -136,7 +136,7 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
             if (keywords.find("food") != keywords.end())
             {
-                dep_id = constTypes.TYPES_EST_FOOD.at("All");
+                dep_id = constTypes.TYPES_EST_FOOD_ALL.second;
             }
 
             if (keywords.find("drink") != keywords.end())
@@ -151,13 +151,13 @@ void Query::run(sc::SearchReplyProxy const& reply) {
 
             if (keywords.find("business") != keywords.end())
             {
-                dep_id = constTypes.TYPES_EST.at("All");
+                dep_id = constTypes.TYPES_EST_ALL.second;
             }
 
             if (keywords.find("nearby.bored") != keywords.end())
             {
                 only_nearby = true;
-                dep_id = constTypes.TYPES_EST_FUN.at("ALL");
+                dep_id = constTypes.TYPES_EST_FUN_ALL.second;
             }
 
             if (keywords.find("nearby.onthemove") != keywords.end())
@@ -169,7 +169,7 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             if (keywords.find("nearby.hungry") != keywords.end())
             {
                 only_nearby = true;
-                dep_id = constTypes.TYPES_EST_FOOD.at("ALL");
+                dep_id = constTypes.TYPES_EST_FOOD_ALL.second;
             }
 
             if (keywords.find("nearby.thirsty") != keywords.end())
@@ -181,7 +181,7 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             if (keywords.find("nearby.stressed") != keywords.end())
             {
                 only_nearby = true;
-                dep_id = constTypes.TYPES_EST_FUN.at("ALL");
+                dep_id = constTypes.TYPES_EST_FUN_ALL.second;
             }
         }
 
@@ -203,13 +203,13 @@ void Query::run(sc::SearchReplyProxy const& reply) {
             {
                 sc::Department::SPtr all_depts = sc::Department::create("", query, _("Places"));
 
-                sc::Department::SPtr estDep = sc::Department::create(constTypes.TYPES_EST.at("All"), query, _("Establishments"));
+                sc::Department::SPtr estDep = sc::Department::create(constTypes.TYPES_EST_ALL.second, query, constTypes.TYPES_EST_ALL.first);
                 all_depts->add_subdepartment(estDep);
 
-                sc::Department::SPtr estFoodDep = sc::Department::create(constTypes.TYPES_EST_FOOD.at(std::string("All")), query, _("Food"));
+                sc::Department::SPtr estFoodDep = sc::Department::create(constTypes.TYPES_EST_FOOD_ALL.second, query, constTypes.TYPES_EST_FOOD_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_FOOD) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -217,10 +217,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estFoodDep);
 
-                sc::Department::SPtr estFunDep = sc::Department::create(constTypes.TYPES_EST_FUN.at(std::string("All")), query, _("Fun"));
+                sc::Department::SPtr estFunDep = sc::Department::create(constTypes.TYPES_EST_FUN_ALL.second, query, constTypes.TYPES_EST_FUN_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_FUN) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -228,10 +228,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estFunDep);
 
-                sc::Department::SPtr estLodgDep = sc::Department::create(constTypes.TYPES_EST_LODGING.at(std::string("All")), query, _("Lodging"));
+                sc::Department::SPtr estLodgDep = sc::Department::create(constTypes.TYPES_EST_LODGING_ALL.second, query, constTypes.TYPES_EST_LODGING_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_LODGING) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -239,10 +239,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estLodgDep);
 
-                sc::Department::SPtr estStoreDep = sc::Department::create(constTypes.TYPES_EST_STORE.at(std::string("All")), query, _("Store"));
+                sc::Department::SPtr estStoreDep = sc::Department::create(constTypes.TYPES_EST_STORE_ALL.second, query, constTypes.TYPES_EST_STORE_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_STORE) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -250,10 +250,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estStoreDep);
 
-                sc::Department::SPtr estTransDep = sc::Department::create(constTypes.TYPES_EST_TRANSPORT.at(std::string("All")), query, _("Transport"));
+                sc::Department::SPtr estTransDep = sc::Department::create(constTypes.TYPES_EST_TRANSPORT_ALL.second, query, constTypes.TYPES_EST_TRANSPORT_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_TRANSPORT) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -261,10 +261,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 estDep->add_subdepartment(estTransDep);
 
-                sc::Department::SPtr estWorshDep = sc::Department::create(constTypes.TYPES_EST_WORSH.at(std::string("All")), query, _("Place of Worship"));
+                sc::Department::SPtr estWorshDep = sc::Department::create(constTypes.TYPES_EST_WORSH_ALL.second, query, constTypes.TYPES_EST_WORSH_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_EST_WORSH) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -273,17 +273,17 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 estDep->add_subdepartment(estWorshDep);
 
                 for(auto& kv : constTypes.TYPES_EST) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
                     estDep->add_subdepartment(tmpDep);
                 }
 
-                sc::Department::SPtr finDep = sc::Department::create(constTypes.TYPES_FINANCE.at(std::string("All")), query, _("Finance"));
+                sc::Department::SPtr finDep = sc::Department::create(constTypes.TYPES_FINANCE_ALL.second, query, constTypes.TYPES_FINANCE_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_FINANCE) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);
@@ -291,10 +291,10 @@ void Query::run(sc::SearchReplyProxy const& reply) {
                 }
                 all_depts->add_subdepartment(finDep);
 
-                sc::Department::SPtr healthDep = sc::Department::create(constTypes.TYPES_HEALTH.at(std::string("All")), query, _("Health"));
+                sc::Department::SPtr healthDep = sc::Department::create(constTypes.TYPES_HEALTH_ALL.second, query, constTypes.TYPES_HEALTH_ALL.first);
 
                 for(auto& kv : constTypes.TYPES_HEALTH) {
-                    if(kv.first.compare("All") == 0 || kv.first.compare("-") == 0) {
+                    if(kv.first.compare("-") == 0) {
                         continue;
                     }
                     sc::Department::SPtr tmpDep = sc::Department::create(kv.second, query, kv.first);

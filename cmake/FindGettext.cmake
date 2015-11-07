@@ -99,7 +99,6 @@ macro(GETTEXT_CREATE_TRANSLATIONS _potFile _firstPoFileArg)
          COMMAND ${GETTEXT_MSGMERGE_EXECUTABLE} --quiet --update --backup=none -s ${_absFile} ${_absPotFile}
          COMMAND ${CMAKE_COMMAND} -E make_directory ${_gmo_PATH}
          COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${_gmoFile} ${_absFile}
-         DEPENDS ${_absPotFile} ${_absFile}
       )
 
       install(FILES ${_gmoFile} DESTINATION share/locale/${_lang}/LC_MESSAGES)
@@ -113,7 +112,7 @@ macro(GETTEXT_CREATE_TRANSLATIONS _potFile _firstPoFileArg)
 
   _GETTEXT_GET_UNIQUE_TARGET_NAME(translations uniqueTargetName)
 
-   add_custom_target(${uniqueTargetName} ${_addToAll} DEPENDS ${_gmoFiles})
+   add_custom_target(${uniqueTargetName} ${_addToAll} DEPENDS pot ${_gmoFiles})
 
    add_dependencies(translations ${uniqueTargetName})
 

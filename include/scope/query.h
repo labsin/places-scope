@@ -13,18 +13,27 @@ namespace scope {
 class CatTypes {
 public:
     std::map<std::string, std::string> TYPES_EST;
+    std::pair<std::string, std::string> TYPES_EST_ALL;
     std::map<std::string, std::string> TYPES_EST_FUN;
+    std::pair<std::string, std::string> TYPES_EST_FUN_ALL;
     std::map<std::string, std::string> TYPES_EST_WORSH;
+    std::pair<std::string, std::string> TYPES_EST_WORSH_ALL;
     std::map<std::string, std::string> TYPES_EST_STORE;
+    std::pair<std::string, std::string> TYPES_EST_STORE_ALL;
     std::map<std::string, std::string> TYPES_EST_LODGING;
+    std::pair<std::string, std::string> TYPES_EST_LODGING_ALL;
     std::map<std::string, std::string> TYPES_EST_TRANSPORT;
+    std::pair<std::string, std::string> TYPES_EST_TRANSPORT_ALL;
     std::map<std::string, std::string> TYPES_EST_FOOD;
+    std::pair<std::string, std::string> TYPES_EST_FOOD_ALL;
     std::map<std::string, std::string> TYPES_HEALTH;
+    std::pair<std::string, std::string> TYPES_HEALTH_ALL;
     std::map<std::string, std::string> TYPES_FINANCE;
+    std::pair<std::string, std::string> TYPES_FINANCE_ALL;
     CatTypes() {}
     void set() {
+        TYPES_EST_ALL = {_("Establishments"), "establishment"};
         TYPES_EST = {
-            {"All", "establishment"},
             {_("Art gallery"), "art_gallery"},
             {_("Atm"), "atm"},
             {_("Beauty Salon"), "beauty_salon"},
@@ -57,8 +66,8 @@ public:
             {_("Travel Agency"), "travel_agency"},
             {_("University"), "university"}
         };
+        TYPES_EST_FUN_ALL = {_("Fun"), "amusement_park|aquarium|bar|bowling_alley|cafe|casino|gym|library|movie_rental|movie_theater|museum|night_club|park|shopping_mall|spa|stadium|zoo"};
         TYPES_EST_FUN = {
-            {"All", "amusement_park|aquarium|bar|bowling_alley|cafe|casino|gym|library|movie_rental|movie_theater|museum|night_club|park|shopping_mall|spa|stadium|zoo"},
             {_("Amusement Park"), "amusement_park"},
             {_("Aquarium"), "aquarium"},
             {_("Bar"), "bar"},
@@ -77,15 +86,15 @@ public:
             {_("Stadium"), "stadium"},
             {_("Zoo"), "zoo"}
         };
+        TYPES_EST_WORSH_ALL = {_("Place of Worship"), "place_of_worship"};
         TYPES_EST_WORSH = {
-            {"All", "place_of_worship"},
             {_("Church"), "church"},
             {_("Hindu Temple"), "hindu_temple"},
             {_("Mosque"), "mosque"},
             {_("synagogue"), "synagogue"}
         };
+        TYPES_EST_STORE_ALL = {_("Store"), "store"};
         TYPES_EST_STORE = {
-            {"All", "store"},
             {_("Bicycle Store"), "bicycle_store"},
             {_("Book Store"), "book_store"},
             {_("Car Dealer"), "car_dealer"},
@@ -102,13 +111,13 @@ public:
             {_("Pet Store"), "pet_store"},
             {_("Shoe Store"), "shoe_store"}
         };
+        TYPES_EST_LODGING_ALL = {_("Lodging"), "lodging"};
         TYPES_EST_LODGING = {
-            {"All", "lodging"},
             {_("Campground"), "campground"},
             {_("RV Park"), "rv_park"}
         };
+        TYPES_EST_TRANSPORT_ALL = {_("Transport"), "airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station"};
         TYPES_EST_TRANSPORT = {
-            {"All", "airport|bus_station|gas_station|parking|subway_station|taxi_stand|train_station"},
             {_("Airport"), "airport"},
             {_("Bus Station"), "bus_station"},
             {_("Gas Station"), "gas_station"},
@@ -117,23 +126,23 @@ public:
             {_("Taxi Stand"), "taxi_stand"},
             {_("Train Station"), "train_station"}
         };
+        TYPES_EST_FOOD_ALL = {_("Food"), "food"};
         TYPES_EST_FOOD = {
-            {"All", "food"},
             {_("Bakery"), "bakery"},
             {_("Meal Delivery"), "meal_delivery"},
             {_("Meal Takeaway"), "meal_takeaway"},
             {_("Restaurant"), "restaurant"}
         };
+        TYPES_HEALTH_ALL = {_("Health"), "health"};
         TYPES_HEALTH = {
-            {"All", "health"},
             {_("Doctor"), "doctor"},
             {_("Dentist"), "dentist"},
             {_("Pharmacy"), "pharmacy"},
             {_("Physiotherapist"), "physiotherapist"},
             {_("Veterinary Care"), "veterinary_care"}
         };
+        TYPES_FINANCE_ALL = {_("Finance"), "finance"};
         TYPES_FINANCE = {
-            {"All", "finance"},
             {_("Bank"), "bank"},
             {_("Lawyer"), "lawyer"},
             {_("Insurance Agency"), "insurance_agency"}
