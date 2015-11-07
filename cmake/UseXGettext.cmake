@@ -67,7 +67,7 @@ macro(add_translations_catalog)
         DEPENDS ${_POT_FILE}
     )
 
-    set(_SOURCES ${EXTRA_SOURCES})
+    set(_SOURCES ${_ARG_EXTRA_SOURCES})
 
     foreach(DIR ${_ARG_SOURCE_DIRECTORIES})
         file(
