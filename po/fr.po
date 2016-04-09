@@ -178,7 +178,7 @@ msgstr "Entreprise funéraire"
 
 #: include/scope/query.h:51
 msgid "General Contractor"
-msgstr "Entrepreneur principal"
+msgstr "Entrepreneur"
 
 #: include/scope/query.h:52
 msgid "Hair Care"
@@ -318,7 +318,7 @@ msgstr "Zoo"
 
 #: include/scope/query.h:89
 msgid "Place of Worship"
-msgstr "Lieu de culte"
+msgstr "Lieux de culte"
 
 #: include/scope/query.h:91
 msgid "Church"
@@ -338,7 +338,7 @@ msgstr "Synagogue"
 
 #: include/scope/query.h:96
 msgid "Store"
-msgstr "Magasin"
+msgstr "Magasins"
 
 #: include/scope/query.h:98
 msgid "Bicycle Store"
@@ -366,7 +366,7 @@ msgstr "Grande surface"
 
 #: include/scope/query.h:104
 msgid "Electronics Store"
-msgstr "magasin d'électronique"
+msgstr "Magasin d'électronique"
 
 #: include/scope/query.h:105
 msgid "Furniture Store"
@@ -414,7 +414,7 @@ msgstr "Terrain pour caravanes"
 
 #: include/scope/query.h:119
 msgid "Transport"
-msgstr "Transport"
+msgstr "Transports"
 
 #: include/scope/query.h:121
 msgid "Airport"
@@ -454,11 +454,11 @@ msgstr "Boulangerie"
 
 #: include/scope/query.h:132
 msgid "Meal Delivery"
-msgstr ""
+msgstr "Livraison de repas"
 
 #: include/scope/query.h:133
 msgid "Meal Takeaway"
-msgstr "Livraison de repas"
+msgstr "Plats à emporter"
 
 #: include/scope/query.h:134
 msgid "Restaurant"
